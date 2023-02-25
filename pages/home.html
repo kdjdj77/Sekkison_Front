@@ -4,9 +4,37 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>home</title>
+   <link rel="stylesheet" type="text/css" href="../css/basic.css">
+   <link rel="stylesheet" type="text/css" href="../css/util.css">
 </head>
 <body>
-   
+   <div class="common" style="width:100%;"></div>
+   <div class="limiter">
+		<div class="container">
+			<div class="wrap">
+            <div id="searchBox" style="width:100%;">
+               <select name="ispublic" id="ispublic">
+                  <option value="1">공개</option>
+                  <option value="0">비공개</option>
+               </select>
+               <select name="isrecruit" id="isrecruit">
+                  <option value="1">모집중</option>
+                  <option value="0">모집완료</option>
+               </select>
+               <br><br>
+               <input name="search" id="search" type="text" style="font-size:1.3rem;" placeholder="검색"/>
+               <hr><br><br>
+               <div id="list" name="list">
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="../js/vars.js"></script>
+<script src="../js/home.js"></script>
 </html>

@@ -35,7 +35,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form id="frm" class="login100-form validate-form">
 					<span class="login100-form-title p-b-26">
 						sekkison
 					</span>
@@ -55,7 +55,9 @@
 						<input class="input100" id="PW" type="password" name="pass">
 						<span class="focus-input100" data-placeholder="PW"></span>
 					</div>
-
+					<div id="error" class="fs-1 text-danger">
+						
+					</div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
@@ -67,7 +69,7 @@
 
 					<div class="text-center p-t-115">
 						<span class="txt1"> 계정이 없으신가요?&nbsp; </span>
-						<a class="txt2" href="#"> 회원가입 </a>
+						<a class="txt2" href="./pages/register.html"> 회원가입 </a>
 					</div>
 				</form>
 			</div>
@@ -92,6 +94,7 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
+	<script src="js/vars.js"></script>
 	<script src="js/login.js"></script>
 
 </body>

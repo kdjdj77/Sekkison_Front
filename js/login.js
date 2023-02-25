@@ -51,7 +51,7 @@
     });
     //[login]
     $("#submitBtn").click(function(){
-        if (!$(".login100-form validate-form").submit()) return;
+        if (!$("#frm").submit()) return;
 
         let id = $("#ID").val();
         let pw = $("#PW").val();
@@ -62,18 +62,21 @@
 		};
 		
 		$.ajax({
-			url:"http://localhost:8088/users/login",
+			url:path + "/users/login",
 			type:"POST",
 			data:data,
 			cache:false,
 			success : function(data){
                 if (data.success) {
                     console.log("로그인 성공");
-                    localStorage.setItem('id', data.data.id);
-                    localStorage.setItem('username', data.data.username);
-                    localStorage.setItem('name', data.data.name);
+                    localStorage.setItem('sks_id', data.data.id);
+                    localStorage.setItem('sks_username', data.data.username);
+                    localStorage.setItem('sks_password', data.data.password);
+                    localStorage.setItem('sks_name', data.data.name);
+                    location.href="./pages/home.html";
                 } else {
                     console.log(data.msg);
+                    $('#error').text(data.msg);
                 }
             }
 		});
