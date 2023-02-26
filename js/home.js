@@ -1,5 +1,9 @@
 let page = 0;
 
+function join(id) {
+   localStorage.setItem("sks_appoint", id);
+   location.href = "../pages/appoint.html";
+}
 (function ($) {
    "use strict";
    //[search]
@@ -18,7 +22,7 @@ let page = 0;
 
       const data = { "search":search }
       $.ajax({
-         url:path + "/appoints/search/"+ispublic+"/"+isrecruit+"/"+page,
+         url:path + `/appoints/search/${ispublic}/${isrecruit}/${page}`,
          type:"GET",
          data:data,
          cache:false,
@@ -43,7 +47,7 @@ let page = 0;
 
       const data = { "search":search }
       $.ajax({
-         url:path + "/appoints/search/"+ispublic+"/"+isrecruit+"/"+page,
+         url:path + `/appoints/search/${ispublic}/${isrecruit}/${page}`,
          type:"GET",
          data:data,
          cache:false,
@@ -76,10 +80,9 @@ let page = 0;
                <div>D-${dday}</div>
                <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
                   <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
-                  <button type="button" id="join">참가하기</button>
+                  <button type="button" id="join" onclick="join(${id});">참가하기</button>
                </div>
-            </div>
-              `;
+            </div>`;
          out.push(row);
       });
       $("#list").html(out.join("\n"));
@@ -101,17 +104,17 @@ let page = 0;
                <div>D-${dday}</div>
                <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
                   <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
-                  <button type="button" id="join">참가하기</button>
+                  <button type="button" id="join" onclick="join(${id});">참가하기</button>
                </div>
             </div>
-              `;
+            `;
          out.push(row);
       });
       $("#list").append(out.join("\n"));
    }
 
    $(window).scroll(function(){
-      var scrolltop = $(window).scrollTop(); 
+      let scrolltop = $(window).scrollTop(); 
       if( scrolltop == $(document).height() - $(window).height() ){
          load();
       }
