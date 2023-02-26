@@ -80,7 +80,7 @@ function join(id) {
                <div>D-${dday}</div>
                <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
                   <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
-                  <button type="button" id="join" onclick="join(${id});">참가하기</button>
+                  <button type="button" id="join" onclick="join(${id});">상세보기</button>
                </div>
             </div>`;
          out.push(row);

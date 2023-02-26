@@ -46,7 +46,7 @@ let posX, posY;
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
       $('#D-d').html("D-" + Math.floor((new Date(data.dDay) - new Date()) / (1000*60*60*24)));
-      $("#ispublic").html(data.ispublic);
+      $("#isPublic").html(data.isPublic);
       $("#isRecruit").html(data.isRecruit);
    }
    function setMembers(data) {
