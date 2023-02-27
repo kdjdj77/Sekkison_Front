@@ -4,6 +4,7 @@
    let isValidPassword = false;
    let isValidName = false;
    let isValidPhone = false;
+   let checkNum = false;
 
    //[ Show pass ]*/
    let showPass = 0;
@@ -146,7 +147,6 @@
    })
    //[ Phone Check Num ]*/
    let code2 = "";
-   let checkNum = false;
    $("#phoneChk").click(function(){
       
       if(!isValidPhone){
