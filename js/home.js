@@ -58,7 +58,6 @@ function join(id) {
                   addList(data.data);
             } else {
                   console.log(data.msg);
-                  $("#list").html("\n");
             }
          }
       });
