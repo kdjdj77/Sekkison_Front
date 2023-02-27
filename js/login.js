@@ -62,7 +62,7 @@
 		};
 		
 		$.ajax({
-			url:path + "/users/login",
+			url:`${path}/users/login`,
 			type:"POST",
 			data:data,
 			cache:false,
