@@ -4,6 +4,7 @@
    let isValidPassword = false;
    let isValidName = false;
    let isValidPhone = false;
+   let checkNum = false;
 
    //[ Show pass ]*/
    let showPass = 0;
@@ -78,7 +79,7 @@
       }
 
       $.ajax({
-         url:path + `/users/duplicated/0?str=${str}`,
+         url:`${path}/users/duplicated/0?str=${str}`,
          type:"GET",
          cache:false,
          success : function(data){
@@ -122,15 +123,15 @@
    $("input[name='phone']").on("propertychange change keyup paste input", function(){
       let str = $("input[name='phone']").val();
 
-      var regExp = /^[0-9]{11}$/;
+      var regExp = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
       if (!regExp.test(str)) {
-         $("#dup-phone").text("전화번호 11자리를 입력해 주세요").css("color", "red");
+         $("#dup-phone").text("올바른 전화번호 11자리를 입력해 주세요").css("color", "red");
          isValidPhone = false;
          return;
       }
 
       $.ajax({
-         url:path + `/users/duplicated/2?str=${str}`,
+         url:`${path}/users/duplicated/2?str=${str}`,
          type:"GET",
          cache:false,
          success : function(data){
@@ -146,7 +147,6 @@
    })
    //[ Phone Check Num ]*/
    let code2 = "";
-   let checkNum = false;
    $("#phoneChk").click(function(){
       
       if(!isValidPhone){
@@ -194,10 +194,45 @@
          return;
       }
    });
+   //[ 회원가입 완료 ]*/
+   $("#submitBtn").click(function() {
+      if (!isValidUsername) {alert("아이디를 확인해주세요");return;}
+      if (!isValidPassword) {alert("비밀번호를 확인해주세요");return;}
+      if ($("input[name='password']").val() != $("input[name='re-password']").val()) {alert("비밀번호 확인란이 틀립니다");return;}
+      if (!isValidName) {alert("별명을 확인해주세요");return;}
+      if (!isValidPhone) {alert("전화번호를 확인해주세요");return;}
+      if (!checkNum) {alert("인증번호를 확인해주세요");return;}
+      console.log($("input[name='gender']").val());
 
+      let username = $("#username").val();
+      let password = $("#password").val();
+      let name = $("#name").val();
+      let phone = $("#phone").val();
+      let gender = $("input[name='gender']").val();
+      let content = "";
 
-
-
-
-
+      let data = {
+			"username":username,
+			"password":password,
+         "name":name,
+         "phone":phone,
+         "gender":gender,
+         "content":content
+		};
+		
+		$.ajax({
+			url:`${path}/users`,
+			type:"POST",
+			data:data,
+			cache:false,
+			success : function(data){
+            if (data.success) {
+               alert("회원가입 성공");
+               location.href="../index.html";
+            } else {
+               alert(data.msg);
+            }
+         }
+      });
+   })
 })(jQuery);

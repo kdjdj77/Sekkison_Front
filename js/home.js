@@ -8,7 +8,7 @@ function join(id) {
    "use strict";
    //[search]
    newload();
-   $("#search").change(newload);
+   $("#search").on("propertychange change keyup paste input",newload);
    $("#ispublic").change(newload);
    $("#isrecruit").change(newload);
 
@@ -73,15 +73,22 @@ function join(id) {
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
 
-         const row = 
-            `<div style="width:100%; border:1px solid gray; padding:5px;">
-               <div style="font-size:1.3rem;">${title}</div>
-               <div>D-${dday}</div>
-               <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
+         const row = `
+            <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
+               display:flex; flex-wrap:wrap; margin-bottom:2px;">
+               <div style="width:85%; margin-left:2%;">
+                  <div style="font-size:1.3rem; overflow: hidden; text-overflow: ellipsis;
+                     white-space: nowrap;">${title}</div>
+                  <div>D-${dday}</div>
                   <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
-                  <button type="button" id="join" onclick="join(${id});">상세보기</button>
                </div>
-            </div>`;
+               <button type="button" id="join" onclick="join(${id});"
+                  style="margin:0; width:13%; height:5rem; font-size:1.2rem; color:white;
+                  border-radius:0px 5px 5px 0px; background-color:#fd8365">
+                  보기
+               </button>
+            </div>
+         `;
          out.push(row);
       });
       $("#list").html(out.join("\n"));
