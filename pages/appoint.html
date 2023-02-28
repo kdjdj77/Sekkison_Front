@@ -6,6 +6,31 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>appoint</title>
    <link rel="stylesheet" href="../css/basic.css"/>
+
+   <style>
+      .customOverlay {
+         position: absolute;
+         z-index: 1;
+         padding: 10px;
+         border: 1px solid #ccc;
+         background-color: #fff;
+         font-size: 14px;
+      }
+      .customOverlay .closeButton {
+         position: absolute;
+         top: 5px;
+         right: 5px;
+         width: 20px;
+         height: 20px;
+         border-radius: 50%;
+         background-color: #fff;
+         color: #000;
+         text-align: center;
+         font-weight: bold;
+         cursor: pointer;
+      }
+   </style>
+   
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
@@ -48,7 +73,7 @@
       
       // Add a custom overlay with a close button
       var overlayPosition = new kakao.maps.LatLng(37.5665, 126.9780);
-      var content = '<div style="background-color:#fff;padding:10px;">Custom overlay content <button id="closeButton">Close</button></div>';
+      var content = '<div class="customOverlay"><div class="closeButton">X</div>Custom overlay content</div>';
       var customOverlay = new kakao.maps.CustomOverlay({
          position: overlayPosition,
          content: content,
@@ -62,7 +87,7 @@
       });
       
       // Hide the custom overlay when the close button is clicked
-      var closeButton = document.getElementById('closeButton');
+      var closeButton = customOverlay.getContent().querySelector('.closeButton');
       kakao.maps.event.addListener(closeButton, 'click', function() {
          customOverlay.setMap(null);
       });
