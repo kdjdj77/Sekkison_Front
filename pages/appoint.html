@@ -46,9 +46,9 @@
       });
       marker.setMap(map);
       
-      // Add a custom overlay
+      // Add a custom overlay with a close button
       var overlayPosition = new kakao.maps.LatLng(37.5665, 126.9780);
-      var content = '<div style="background-color:#fff;padding:10px;">Custom overlay content</div>';
+      var content = '<div style="background-color:#fff;padding:10px;">Custom overlay content <button id="closeButton">Close</button></div>';
       var customOverlay = new kakao.maps.CustomOverlay({
          position: overlayPosition,
          content: content,
@@ -59,6 +59,12 @@
       // Display the custom overlay when the marker is clicked
       kakao.maps.event.addListener(marker, 'click', function() {
          customOverlay.setMap(map);
+      });
+      
+      // Hide the custom overlay when the close button is clicked
+      var closeButton = document.getElementById('closeButton');
+      kakao.maps.event.addListener(closeButton, 'click', function() {
+         customOverlay.setMap(null);
       });
    </script>
 
