@@ -55,7 +55,11 @@
          xAnchor: 0.5,
          yAnchor: 1.0
       });
-      customOverlay.setMap(map);
+      
+      // Display the custom overlay when the marker is clicked
+      kakao.maps.event.addListener(marker, 'click', function() {
+         customOverlay.setMap(map);
+      });
    </script>
 
 
