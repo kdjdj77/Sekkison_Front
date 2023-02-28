@@ -6,6 +6,76 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>appoint</title>
    <link rel="stylesheet" href="../css/basic.css"/>
+
+   <style>
+      /* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Appointment details styles */
+.appointment-details {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.appointment-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.appointment-details p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.participants {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+.participants li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Waiting room styles */
+.waiting-room {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.waiting-room h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.waiting-room p {
+  font-size: 16px;
+}
+
+
+    </style>
+
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
@@ -26,7 +96,51 @@
             <div id="members">
 
 
+
             </div>
+
+            <div class="container">
+               <div class="appointment-details">
+                 <h2>Title</h2>
+                 <p>Content</p>
+                 <p>D-Day</p>
+                 <p>Head Count</p>
+                 <p>Address Detail</p>
+                 <ul class="participants">
+                   <li>Participant 1</li>
+                   <li>Participant 2</li>
+                   <li>Participant 3</li>
+                 </ul>
+               </div>
+               <div class="waiting-room">
+                 <h2>Waiting Room</h2>
+                 <p>Please wait here until your appointment starts.</p>
+                 <div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
+
+
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+marker.setMap(map);
+	</script>
+               </div>
+             </div>
+
             <div id="map" style="width:500px;height:400px;"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
 
