@@ -32,24 +32,31 @@
 
 
 	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
-
-marker.setMap(map);
-	</script>
+      var container = document.getElementById('map');
+      var options = {
+         center: new kakao.maps.LatLng(37.5665, 126.9780),
+         level: 3
+      };
+      var map = new kakao.maps.Map(container, options);
+      
+      // Add a marker
+      var markerPosition = new kakao.maps.LatLng(37.5665, 126.9780);
+      var marker = new kakao.maps.Marker({
+         position: markerPosition
+      });
+      marker.setMap(map);
+      
+      // Add a custom overlay
+      var overlayPosition = new kakao.maps.LatLng(37.5665, 126.9780);
+      var content = '<div style="background-color:#fff;padding:10px;">Custom overlay content</div>';
+      var customOverlay = new kakao.maps.CustomOverlay({
+         position: overlayPosition,
+         content: content,
+         xAnchor: 0.5,
+         yAnchor: 1.0
+      });
+      customOverlay.setMap(map);
+   </script>
 
 
          </div>
