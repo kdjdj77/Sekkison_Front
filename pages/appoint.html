@@ -33,29 +33,6 @@
 </head>
 <body>
 
-   <div id="map"></div>
-	<ul class="participants">
-		<li class="active">John Doe</li>
-		<li>Jane Smith</li>
-		<li>Bob Johnson</li>
-	</ul>
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78Y&libraries=services"></script>
-	<script>
-		// Initialize the Kakao Map
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(37.566826, 126.9786567),
-			level: 5
-		};
-		var map = new kakao.maps.Map(container, options);
-		
-		// Add a marker to a specific location
-		var markerPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
-		var marker = new kakao.maps.Marker({
-			position: markerPosition
-		});
-		marker.setMap(map);
-	</script>
 
 
 
@@ -63,23 +40,9 @@
    <div class="limiter">
 		<div class="container">
 			<div class="wrap">
-            <div id="title"></div>
-            <div id="content"></div>
-            <div id="posX"></div>
-            <div id="posY"></div>
-            <div id="addressDetail"></div>
-            <span id="headCnt"></span>/<span id="maxCnt"></span>
-            <div id="dDay"></div>
-            <div id="D-d"></div>
-            <div id="isPublic"></div>
-            <div id="isRecruit"></div>
 
-            <div id="members">
-
-
-            </div>
             <div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
+	            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
 
 
 	<script>
@@ -101,6 +64,24 @@ var marker = new kakao.maps.Marker({
 
 marker.setMap(map);
 	</script>
+
+
+            <div id="title"></div>
+            <div id="content"></div>
+            <div id="posX"></div>
+            <div id="posY"></div>
+            <div id="addressDetail"></div>
+            <span id="headCnt"></span>/<span id="maxCnt"></span>
+            <div id="dDay"></div>
+            <div id="D-d"></div>
+            <div id="isPublic"></div>
+            <div id="isRecruit"></div>
+
+            <div id="members">
+
+
+            </div>
+
 
 
          </div>
