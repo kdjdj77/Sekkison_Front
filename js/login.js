@@ -51,8 +51,6 @@
     });
     //[login]
     $("#submitBtn").click(function(){
-        if (!$("#frm").submit()) return;
-
         let id = $("#ID").val();
         let pw = $("#PW").val();
 

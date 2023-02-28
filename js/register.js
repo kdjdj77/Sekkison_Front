@@ -79,7 +79,7 @@
       }
 
       $.ajax({
-         url:path + `/users/duplicated/0?str=${str}`,
+         url:`${path}/users/duplicated/0?str=${str}`,
          type:"GET",
          cache:false,
          success : function(data){
@@ -131,7 +131,7 @@
       }
 
       $.ajax({
-         url:path + `/users/duplicated/2?str=${str}`,
+         url:`${path}/users/duplicated/2?str=${str}`,
          type:"GET",
          cache:false,
          success : function(data){
@@ -201,8 +201,7 @@
       if ($("input[name='password']").val() != $("input[name='re-password']").val()) {alert("비밀번호 확인란이 틀립니다");return;}
       if (!isValidName) {alert("별명을 확인해주세요");return;}
       if (!isValidPhone) {alert("전화번호를 확인해주세요");return;}
-      //if (!checkNum) {alert("인증번호를 확인해주세요");return;}
-      if ($("input[name='gender']").val() != 'M' && $("input[name='gender']").val() != 'F') {alert("성별을 확인해주세요");return;}
+      if (!checkNum) {alert("인증번호를 확인해주세요");return;}
       console.log($("input[name='gender']").val());
 
       let username = $("#username").val();
