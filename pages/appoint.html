@@ -11,23 +11,42 @@
       .customOverlay {
          position: absolute;
          z-index: 1;
-         padding: 10px;
-         border: 1px solid #ccc;
+         padding: 20px;
+         border-radius: 10px;
          background-color: #fff;
-         font-size: 14px;
+         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+         font-size: 16px;
+         color: #333;
+         font-family: 'Roboto', sans-serif;
       }
       .customOverlay .closeButton {
          position: absolute;
-         top: 5px;
-         right: 5px;
-         width: 20px;
-         height: 20px;
+         top: 10px;
+         right: 10px;
+         width: 30px;
+         height: 30px;
          border-radius: 50%;
          background-color: #fff;
          color: #000;
          text-align: center;
          font-weight: bold;
          cursor: pointer;
+         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      }
+      .customOverlay h2 {
+         margin-top: 0;
+         font-size: 24px;
+         font-weight: bold;
+      }
+      .customOverlay p {
+         margin: 10px 0;
+         line-height: 1.5;
+      }
+      .customOverlay img {
+         width: 100%;
+         height: auto;
+         border-radius: 10px;
+         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       }
    </style>
 
@@ -72,13 +91,19 @@
       marker.setMap(map);
       
       // Add a custom overlay with a close button
-      var overlayPosition = new kakao.maps.LatLng(37.5665, 126.9780);
-      var content = '<div class="customOverlay"><div class="closeButton">X</div>Custom overlay content</div>';
+      var overlayPosition = new kakao.maps.LatLng(37.5666, 126.9780);
+      var content = '<div class="customOverlay">' +
+                       '<div class="closeButton">X</div>' +
+                       '<img src="https://picsum.photos/id/237/200/300" alt="Image">' +
+                       '<h2>Custom Overlay Title</h2>' +
+                       '<p>Custom overlay content goes here.</p>' +
+                    '</div>';
       var customOverlay = new kakao.maps.CustomOverlay({
          position: overlayPosition,
          content: content,
          xAnchor: 0.5,
-         yAnchor: 1.0
+         yAnchor: 1.2,
+         zIndex: kakao.maps.Marker.MAX_ZINDEX + 1
       });
       
       // Display the custom overlay when the marker is clicked
@@ -87,7 +112,7 @@
       });
       
       // Hide the custom overlay when the close button is clicked
-      var closeButton = customOverlay.getContent().querySelectorAll('.closeButton');
+      var closeButton = customOverlay.getContent().querySelector('.closeButton');
       kakao.maps.event.addListener(closeButton, 'click', function() {
          customOverlay.setMap(null);
       });
