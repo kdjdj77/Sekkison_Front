@@ -30,7 +30,7 @@
          cursor: pointer;
       }
    </style>
-   
+
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
@@ -87,7 +87,7 @@
       });
       
       // Hide the custom overlay when the close button is clicked
-      var closeButton = customOverlay.getContent().querySelector('.closeButton');
+      var closeButton = customOverlay.getContent().querySelectorAll('.closeButton');
       kakao.maps.event.addListener(closeButton, 'click', function() {
          customOverlay.setMap(null);
       });
