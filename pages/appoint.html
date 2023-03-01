@@ -48,26 +48,28 @@
 			border-bottom: 1px solid #eee;
 			position: relative;
 		}
-		.box h2 {
+		.box h1 {
 			margin-top: 0;
 			font-size: 18px;
 			font-weight: normal;
 			color: #333;
 		}
-		.box p {
+		
+		.box time {
+			font-size: 15px;
+			color: #666;
+			margin-top: 5px;
+			display: block;
+			text-align: right;
+		}
+
+      .box2 p {
 			margin: 0;
 			padding: 0;
 			line-height: 1.4;
 			font-size: 14px;
 			color: #333;
 			margin-top: 5px;
-		}
-		.box time {
-			font-size: 12px;
-			color: #666;
-			margin-top: 5px;
-			display: block;
-			text-align: right;
 		}
 </style>
 <body>
@@ -80,10 +82,13 @@
 		<div class="container">
 			<div class="wrap">
             <div class="box">
-               <h2><div id="title"></div></h2>
-               <p><div id="content"></div></p>
+               <h1><div id="title"></div></h1>
                <time><div id="dDay"></div></time>
                <time><div id="D-d"></div></time>
+            </div>
+
+            <div class="box2">
+               <p><div id="content"></div></p>
             </div>
             
       
