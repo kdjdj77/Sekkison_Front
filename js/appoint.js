@@ -46,8 +46,8 @@ let posX, posY;
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
       $('#D-d').html("D-" + Math.floor((new Date(data.dDay) - new Date()) / (1000*60*60*24)));
-      $("#isPublic").html(data.isPublic);
-      $("#isRecruit").html(data.isRecruit);
+      $("#isPublic").html(data.isPublic ? "공개" : "비공개");
+      $("#isRecruit").html(data.isRecruit ? "모집중" : "모집완료");
    }
    function setMembers(data) {
       data.forEach(member => {
