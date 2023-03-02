@@ -52,7 +52,7 @@
          background-color:ivory;
          position:fixed;
          width:250px;
-			min-height:100vh;
+	      min-height:100vh;
          top:50px;
          transition:all .35s;
 			border-left:2px solid gray;">
@@ -69,18 +69,20 @@
 				background-color:bisque;
 				">유저 찾기</button>
 		<hr>
-		<div id="friendList">
+		<div id="friendList" style="padding-bottom:300px; height:100vh; overflow:scroll;">
 			
 		</div>
    </div>
 	<div id="findFriend" class="off" style="border-radius:5px; z-index:11; background-color:rgb(185, 185, 238); width:70vw; height:70vh; position: fixed; left: 50%;
 			top: 50%; transform: translate(-50%, -50%);">
-		<div style="padding:10px;width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-			<div style="font-size:1.3rem;">유저 찾기</div>
-			<button id="findFriendBtn2" type="button" style="font-size:2rem;"><i class="fa fa-times"></i></button>
-		</div><hr>
-		<input id="friendInput" style="margin:2%; width:96%; font-size:1.3rem; border-radius: 5px; padding:5px;" placeholder="검색"/>
-		<div id="friendSearch">
+		<div style="height:25%">
+			<div style="padding:10px;width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
+				<div style="font-size:1.3rem;">유저 찾기</div>
+				<button id="findFriendBtn2" type="button" style="font-size:2rem;"><i class="fa fa-times"></i></button>
+			</div><hr>
+			<input id="friendInput" style="margin:2%; width:96%; font-size:1.3rem; border-radius: 5px; padding:5px;" placeholder="검색"/>
+		</div>
+		<div id="friendSearch" style="margin:1%; width:98%; height:70%; overflow:scroll;">
 
 
 		</div>

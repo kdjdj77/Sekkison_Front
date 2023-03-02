@@ -42,7 +42,7 @@
                      <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">
                         <button type="button" style="float:left; margin:0; height:100%; width:100%; border-radius:5px 0px 0px 5px;
                               color:white; background-color:green" onclick="send(${toId}, ${fromId})">
-                           <i class="fa fa-repeat"></i>
+                           <i class="fa fa-reply"></i>
                         </button>
                      </div>
                      <div style="margin:auto; width:40%; overflow: hidden; text-overflow: ellipsis;
