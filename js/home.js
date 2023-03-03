@@ -72,7 +72,7 @@ function join(id) {
          let dday = String(Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24)));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
-         let masterName = appoint.masterName;
+         let masterName = appoint.memo;
 
          const row = `
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
@@ -105,10 +105,10 @@ function join(id) {
       result.forEach(appoint => {
          let id = appoint.id;
          let title = appoint.title;
-         let dday = String(Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24)));
+         let dday = String(Math.floor((new Date(appoint.dDay) - new Date()) / (1000*60*60*24)));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
-         let masterName = appoint.masterName;
+         let masterName = appoint.memo;
 
          const row = `
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;

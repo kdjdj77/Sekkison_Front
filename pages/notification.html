@@ -9,22 +9,19 @@
    <style>
       .off { display:none; }
       input[type=radio]{ display: none; }
-      input[type=radio]+label{
+      .radiobtn {
          display: inline-block;
          cursor: pointer;
          height: 2.5rem;
          width: 48%;
-         border:2px solid gray;
-         border-bottom:2px solid black;
-         border-radius:5px;
          line-height: 38px;
          text-align: center;
-         background-color: gray;
+         color:gray;
       }
-      input[type=radio]:checked+label{
+      .btnOn{
+         font-weight:bold;
          color: black;
-         border:2px solid black;
-         border-bottom:0px;
+         border-bottom:4px solid black;
       }
    </style>
 </head>
@@ -34,17 +31,19 @@
 		<div class="container">
 			<div class="wrap">
             <h4 style="margin-bottom:3px;">알림</h4><hr>
-            <div>
-               <input type="radio" name="noti" id="friend" value='0' checked>
-               <label for="friend">친구<span id="friendCnt"></span></label>
-               <input type="radio" name="noti" id="appoint" value='1'>
-               <label for="appoint">약속<span id="appointCnt"></span></label>
+            <div style="margin-bottom:1rem; display:flex; justify-content:space-around;">
+               <div id="friend" class="radiobtn btnOn">
+                  친구<span id="friendCnt"></span>
+               </div>
+               <div id="appoint" class="radiobtn">
+                  약속<span id="appointCnt"></span>
+               </div>
             </div>
-            <div id="friends" style="width:100%;">
+            <div id="friends" class="list" style="width:100%; height:67vh;">
 
 
             </div>
-            <div id="appoints" class="off" style="width:100%;">
+            <div id="appoints" class="list off" style="width:100%; height:70vh;">
 
 
             </div>

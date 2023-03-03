@@ -34,7 +34,7 @@
    function setFriends(result) {
       const out = [];
       result.forEach(data => {
-         let name = `${data.name} (${data.memo})`;
+         let name = data.name + (data.memo == null ? "" : `(${data.memo})`);
          const row = `
             <div style="margin:1px; background-color:#FBF5EF; color:black; width:100%; padding:10px; border:2px solid #F6E3CE; border-radius:5px">
                <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">${name}</a>

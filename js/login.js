@@ -50,7 +50,12 @@
         }
     });
     //[login]
-    $("#submitBtn").click(function(){
+    $("#submitBtn").click(login);
+    $("#PW").on('keyup', function() {
+        if(window.event.keyCode==13) login();
+    })
+
+    function login(){
         let id = $("#ID").val();
         let pw = $("#PW").val();
 
@@ -78,5 +83,5 @@
                 }
             }
 		});
-	});
+	};
 })(jQuery);
