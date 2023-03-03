@@ -6,6 +6,11 @@
       <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
       <script src="https://kit.fontawesome.com/d7e04fc77c.js" crossorigin="anonymous"></script>
    </head>
+   <style>
+      .friendOn { right:0px; }
+		.friendOff { right:-250px; }
+		.off { display:none; }
+   </style>
 <body>
    <header style="
          position:fixed;
@@ -22,12 +27,12 @@
             font-size:1.5rem;
             margin:5px;
             font-family: 'Shantell Sans', cursive;">sekkison</a>
-      <a href="#" style="
+      <button type="button" id="friendBtn" style="
             text-decoration:none;
             color:black;
             font-size:1.3rem;
-            margin:7px 5px 5px auto;"><i class="fa fa-user-group"></i></a>
-      <a href="#" style="
+            margin:7px 5px 5px auto;"><i class="fa fa-user-group"></i></button>
+      <a href="./message.html" style="
             text-decoration:none;
             color:black;
             font-size:1.5rem;
@@ -37,12 +42,51 @@
             color:black;
             font-size:1.5rem;
             margin:5px;"><i class="fa fa-bell"></i></a>
-      <a href="../pages/userinfo.html" style="
+      <a href="./userinfo.html" style="
             text-decoration:none;
             color:black;
             font-size:1.5rem;
             margin:5px;"><i class="fa fa-circle"></i></a>
    </header>
+   <div id="friendToggle" class="friendOff" style="z-index:9;
+         background-color:ivory;
+         position:fixed;
+         width:250px;
+	      min-height:100vh;
+         top:50px;
+         transition:all .35s;
+			border-left:2px solid gray;">
+		<div style="width:100%; height:50px; display:flex; flex-wrap:wrap; padding:10px; justify-content:space-between;">
+			<div id="myName"></div>
+			<button id="friendBtn2" style="font-size:1.5rem; margin-right:10px;"><i class="fa fa-times"></i></button>
+		</div>
+		<button id="findFriendBtn" type="button" style="
+				border-radius:5px;
+				border:3px solid wheat;
+				width:96%;
+				height:2rem;
+				margin:2%;
+				background-color:bisque;
+				">유저 찾기</button>
+		<hr>
+		<div id="friendList" style="padding-bottom:300px; height:100vh; overflow:scroll;">
+			
+		</div>
+   </div>
+	<div id="findFriend" class="off" style="border-radius:5px; z-index:11; background-color:rgb(185, 185, 238); width:70vw; height:70vh; position: fixed; left: 50%;
+			top: 50%; transform: translate(-50%, -50%);">
+		<div style="height:25%">
+			<div style="padding:10px;width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
+				<div style="font-size:1.3rem;">유저 찾기</div>
+				<button id="findFriendBtn2" type="button" style="font-size:2rem;"><i class="fa fa-times"></i></button>
+			</div><hr>
+			<input id="friendInput" style="margin:2%; width:96%; font-size:1.3rem; border-radius: 5px; padding:5px;" placeholder="검색"/>
+		</div>
+		<div id="friendSearch" style="margin:1%; width:98%; height:70%; overflow:scroll;">
+
+
+		</div>
+	</div>
    <footer style="
          position:fixed;
          width:100vw;
@@ -80,4 +124,6 @@
             margin:5px;"><i class="fa fa-calendar-o"></i></a>
    </footer>
 </body>
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="../js/common.js"></script>
 </html>

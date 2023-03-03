@@ -51,8 +51,6 @@
     });
     //[login]
     $("#submitBtn").click(function(){
-        if (!$("#frm").submit()) return;
-
         let id = $("#ID").val();
         let pw = $("#PW").val();
 
@@ -62,7 +60,7 @@
 		};
 		
 		$.ajax({
-			url:path + "/users/login",
+			url:`${path}/users/login`,
 			type:"POST",
 			data:data,
 			cache:false,
