@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>notification</title>
+   <link rel="stylesheet" href="../css/basic.css"/>
+   <style>
+      .off { display:none; }
+      input[type=radio]{ display: none; }
+      input[type=radio]+label{
+         display: inline-block;
+         cursor: pointer;
+         height: 2.5rem;
+         width: 48%;
+         border:2px solid gray;
+         border-bottom:2px solid black;
+         border-radius:5px;
+         line-height: 38px;
+         text-align: center;
+         background-color: gray;
+      }
+      input[type=radio]:checked+label{
+         color: black;
+         border:2px solid black;
+         border-bottom:0px;
+      }
+   </style>
+</head>
+<body>
+   <div class="common" style="width:100%;"></div>
+   <div class="limiter">
+		<div class="container">
+			<div class="wrap">
+            <h4 style="margin-bottom:3px;">알림</h4><hr>
+            <div>
+               <input type="radio" name="noti" id="friend" value='0' checked>
+               <label for="friend">친구<span id="friendCnt"></span></label>
+               <input type="radio" name="noti" id="appoint" value='1'>
+               <label for="appoint">약속<span id="appointCnt"></span></label>
+            </div>
+            <div id="friends" style="width:100%;">
+
+
+            </div>
+            <div id="appoints" class="off" style="width:100%;">
+
+
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="../js/vars.js"></script>
+<script src="../js/notification.js"></script>
+</html>

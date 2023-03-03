@@ -1,8 +1,27 @@
+// request 세팅
+let Request = function() {  
+   this.getParameter = function(name) {  
+       var rtnval = '';  
+       var nowAddress = unescape(location.href);  
+       var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+               nowAddress.length)).split('&');  
+       for (var i = 0; i < parameters.length; i++) {  
+           var varName = parameters[i].split('=')[0];  
+           if (varName.toUpperCase() == name.toUpperCase()) {  
+               rtnval = parameters[i].split('=')[1];  
+               break;  
+           }  
+       }  
+       return rtnval;  
+   }  
+}
+var request = new Request(); 
+let appointId = request.getParameter("id");
 let posX, posY;
+
 (function ($) {
    "use strict";
    //[search]
-   let appointId = localStorage.getItem("sks_appoint");
    load(appointId);
 
    function load(aid) {
