@@ -45,10 +45,10 @@
                            <i class="fa fa-reply"></i>
                         </button>
                      </div>
-                     <div style="margin:auto; width:40%; overflow: hidden; text-overflow: ellipsis;
+                     <div style="cursor:pointer; margin:auto; width:40%; overflow: hidden; text-overflow: ellipsis;
                         white-space: nowrap;" onclick="show(${id})">&nbsp;${content}
                      </div>
-                     <div style="margin:auto; width:40%; text-align:right;" onclick="show(${id})">
+                     <div style="cursor:pointer; margin:auto; width:40%; text-align:right;" onclick="show(${id})">
                         ${fromName}&nbsp;
                      </div>
                      <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">

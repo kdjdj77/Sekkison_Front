@@ -1,7 +1,6 @@
 let page = 0;
 
 function join(id) {
-   localStorage.setItem("sks_appoint", id);
    location.href = `../pages/appoint.html?id=${id}`;
 }
 (function ($) {
