@@ -6,6 +6,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>notification</title>
    <link rel="stylesheet" href="../css/basic.css"/>
+   <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+   <script src="../js/vars.js"></script>
    <style>
       .off { display:none; }
       input[type=radio]{ display: none; }
@@ -32,10 +34,10 @@
 			<div class="wrap">
             <h4 style="margin-bottom:3px;">알림</h4><hr>
             <div style="margin-bottom:1rem; display:flex; justify-content:space-around;">
-               <div id="friend" class="radiobtn btnOn">
+               <div id="friend" class="radiobtn btnOn" onclick="friendBtnClick()">
                   친구<span id="friendCnt"></span>
                </div>
-               <div id="appoint" class="radiobtn">
+               <div id="appoint" class="radiobtn" onclick="appointBtnClick()">
                   약속<span id="appointCnt"></span>
                </div>
             </div>
@@ -51,7 +53,5 @@
       </div>
    </div>
 </body>
-<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="../js/vars.js"></script>
 <script src="../js/notification.js"></script>
 </html>

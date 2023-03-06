@@ -1,0 +1,113 @@
+.wrap {
+   font-family: 'Nanum Gothic', sans-serif;
+}      
+
+h1 {
+   font-size: 36px;
+   margin-bottom: 10px;
+}
+
+p {
+   font-size: 18px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+}
+
+h2 {
+   
+   font-size: 24px;
+   margin-bottom: 10px;
+}
+
+.title {
+font-size: 24px;
+font-weight: bold;
+color: #333;
+}
+
+.content {
+font-size: 16px;
+color: #666;
+}
+
+.box {
+display: block;
+margin-bottom: 20px;
+padding: 10px;
+position: relative;
+}
+
+.box h1 {
+margin-top: 0;
+font-size: 18px;
+font-weight: normal;
+color: #333;
+}
+   
+.box time {
+font-size: 15px;
+color: #666;
+margin-top: 5px;
+display: block;
+text-align: right;
+}
+
+.box status {
+font-size: 15px;
+color: #666;
+margin-top: 5px;
+display: block;
+text-align: right;
+}
+
+.box2 {
+display: block;
+margin-bottom: 20px;
+padding: 10px;
+position: relative;
+}   
+
+.box2 p {
+margin: 0;
+padding: 0;
+line-height: 1.4;
+font-size: 14px;
+color: #333;
+margin-top: 5px;
+}
+
+.box3 {
+display: block;
+margin-bottom: 20px;
+padding: 10px;
+position: relative;
+transition: .25s all;
+} 
+
+.box3 h2 {
+margin-top: 0;
+font-size: 18px;
+font-weight: normal;
+color: #333;
+}
+
+.part {
+display: block;
+margin-bottom: 20px;
+padding: 10px;
+border-bottom: 1px solid #eee;
+position: relative;
+}
+
+.part h2 {
+margin-top: 0;
+font-size: 18px;
+font-weight: normal;
+color: #333;
+}
+.tag {
+   font-size:.7rem;
+   border:1px solid gray;
+   border-radius:5px;
+   padding:.2rem;
+}

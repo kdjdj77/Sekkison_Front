@@ -1,7 +1,27 @@
 let category = true;
+// request 세팅
+let Request = function() {  
+   this.getParameter = function() {    
+       var nowAddress = unescape(location.href);  
+       return nowAddress.slice(nowAddress.indexOf('#') + 1, nowAddress.length);
+   }  
+}
+var request = new Request(); 
+let tag = request.getParameter();
 (function ($) {
    "use strict";
-   console.log($("input[name='noti']:checked").val());
+   if (tag == 2) {
+      $("#appoint").addClass("btnOn");
+      $('#friend').removeClass("btnOn");
+      category = !category;
+      if (category) {
+         $("#friends").removeClass("off");
+         $("#appoints").addClass("off");
+      } else {
+         $("#friends").addClass("off");
+         $("#appoints").removeClass("off");
+      }
+   }
 
    $(document).on('click', '.radiobtn', function(e) {
       if (!$(this).hasClass("btnOn")) {
@@ -115,7 +135,7 @@ let category = true;
          const row = `
             <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${regDate}</div>
             <div style="width:100%; height:50px; display:flex; flex-wrap:wrap; padding:0; margin-bottom:0;
-               border-top:1px solid black;">
+               border-top:1px solid black;border-bottom:1px solid black;">
                <div style="cursor:pointer; margin:auto; width:80%; overflow: hidden; text-overflow: ellipsis;
                   white-space: nowrap;" onclick="show(${inviteId})">&nbsp;${invitor}님의 약속 초대입니다
                </div>
@@ -126,7 +146,7 @@ let category = true;
                   </button>
                   <button type="button" style="float:right; margin:0; height:100%; width:50%; border:none;
                         color:green; font-size:1.5rem;" onclick="showInvite(${id})">
-                     <i class="fa fa-sign-out"></i>
+                     <i class="fa fa-sign-in"></i>
                   </button>
                </div>
             </div>
@@ -211,3 +231,5 @@ function denyInvite(inviteId) {
    xmlhttp.open("DELETE", `${path}/invites/${inviteId}`);
    xmlhttp.send();
 }
+function friendBtnClick() { location.href="#1"; }
+function appointBtnClick() { location.href="#2"; }

@@ -208,7 +208,7 @@
       let password = $("#password").val();
       let name = $("#name").val();
       let phone = $("#phone").val();
-      let gender = $("input[name='gender']").val();
+      let gender = $("input[name='gender']:checked").val();
       let content = "";
 
       let data = {

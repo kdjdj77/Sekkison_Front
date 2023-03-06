@@ -4,12 +4,13 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
-      <script src="https://kit.fontawesome.com/d7e04fc77c.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+      <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
    </head>
    <style>
       .friendOn { right:0px; }
-		.friendOff { right:-250px; }
-		.off { display:none; }
+      .friendOff { right:-250px; }
+      .off { display:none; }
    </style>
 <body>
    <header style="
@@ -28,21 +29,21 @@
             font-size:1.5rem;
             margin:5px;
             font-family: 'Shantell Sans', cursive;">sekkison</a>
-      <button type="button" id="friendBtn" style="
-            text-decoration:none;
-            color:black;
-            font-size:1.3rem;
-            margin:7px 5px 5px auto;"><i class="fa fa-user-group"></i></button>
       <a href="./message.html" style="
             text-decoration:none;
-            color:black;
+            color:tomato;
             font-size:1.5rem;
-            margin:5px;"><i class="fa fa-envelope-o"></i></a>
+            margin:4px 5px 5px auto;"><i class="fa fa-envelope"></i></a>
       <a href="./notification.html" style="
             text-decoration:none;
-            color:black;
+            color:tomato;
             font-size:1.5rem;
             margin:5px;"><i class="fa fa-bell"></i></a>
+      <button type="button" id="friendBtn" style="
+            text-decoration:none;
+            color:tomato;
+            font-size:1.5rem;
+            margin:8px 5px 5px 5px;"><i class="fa fa-address-book"></i></button>
       <a href="./userinfo.html" style="
             text-decoration:none;
             color:black;
@@ -53,7 +54,7 @@
          background-color:ivory;
          position:fixed;
          width:250px;
-	      min-height:100vh;
+         min-height:100vh;
          top:50px;
          transition:all .35s;
 			border-left:2px solid gray;">
@@ -125,6 +126,5 @@
             margin:5px;"><i class="fa fa-calendar-o"></i></a>
    </footer>
 </body>
-<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="../js/common.js"></script>
 </html>

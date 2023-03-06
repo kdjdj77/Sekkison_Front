@@ -7,23 +7,12 @@ function join(id) {
    "use strict";
    //[search]
    newload();
-   $("#search").on("propertychange change keyup paste input",newload);
-   $("#ispublic").change(newload);
-   $("#isrecruit").change(newload);
-
 
    function newload() {
       page = 0;
-      let ispublic = $("#ispublic").val();
-      let isrecruit = $("#isrecruit").val();
-      let search = $("#search").val();
-      if (search == null) search = "";
-
-      const data = { "search":search }
       $.ajax({
-         url:path + `/appoints/search/${ispublic}/${isrecruit}/${page}`,
+         url:`${path}/appoints/list/${localStorage.getItem("sks_id")}/${page}`,
          type:"GET",
-         data:data,
          cache:false,
          success : function(data){
             if (data.success) {
@@ -39,16 +28,9 @@ function join(id) {
    }
    function load() {
       page++;
-      let ispublic = $("#ispublic").val();
-      let isrecruit = $("#isrecruit").val();
-      let search = $("#search").val();
-      if (search == null) search = "";
-
-      const data = { "search":search }
       $.ajax({
-         url:path + `/appoints/search/${ispublic}/${isrecruit}/${page}`,
+         url:`${path}/appoints/list/${localStorage.getItem("sks_id")}/${page}`,
          type:"GET",
-         data:data,
          cache:false,
          success : function(data){
             if (data.success) {
@@ -69,27 +51,29 @@ function join(id) {
       result.forEach(appoint => {
          let id = appoint.id;
          let title = appoint.title;
-         let dday = String(Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24)));
+         let date = appoint.dday;
+         let dday = String(Math.floor((new Date(date) - new Date()) / (1000*60*60*24)));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
          let masterName = appoint.memo;
 
          const row = `
+            <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${date}</div>
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
                display:flex; flex-wrap:wrap; margin-bottom:2px;">
                <div style="width:85%; margin-left:2%;">
                   <div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-                  <div style="width:70%; font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
-                     white-space: nowrap;">
-                     ${title}
+                     <div style="width:70%; font-size:1.3rem; overflow: hidden; text-overflow: ellipsis;
+                        white-space: nowrap;">
+                        ${title}
+                     </div>
+                     <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
                   </div>
-                  <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
-               </div>
-                  <div>D-${dday}</div>
-                  <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
+                  <span>D-${dday}</span>
+                  <span style="float:right; margin-right:0.5rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
                </div>
                <button type="button" id="join" onclick="join(${id});"
-                  style="margin:0; width:13%; height:5rem; font-size:1.2rem; color:white;
+                  style="margin:0; width:13%; height:3.5rem; font-size:1.2rem; color:white;
                   border-radius:0px 5px 5px 0px; background-color:#fd8365">
                   <i class="fa fa-sign-in"></i>
                </button>
@@ -105,27 +89,29 @@ function join(id) {
       result.forEach(appoint => {
          let id = appoint.id;
          let title = appoint.title;
-         let dday = String(Math.floor((new Date(appoint.dDay) - new Date()) / (1000*60*60*24)));
+         let date = appoint.dday;
+         let dday = String(Math.floor((new Date(date) - new Date()) / (1000*60*60*24)));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
          let masterName = appoint.memo;
 
          const row = `
+            <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${date}</div>
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
                display:flex; flex-wrap:wrap; margin-bottom:2px;">
                <div style="width:85%; margin-left:2%;">
                   <div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-                     <div style="width:70%; font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
+                     <div style="width:70%; font-size:1.3rem; overflow: hidden; text-overflow: ellipsis;
                         white-space: nowrap;">
                         ${title}
                      </div>
                      <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
                   </div>
-                  <div>D-${dday}</div>
-                  <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
+                  <span>D-${dday}</span>
+                  <span style="float:right; margin-right:0.5rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
                </div>
                <button type="button" id="join" onclick="join(${id});"
-                  style="margin:0; width:13%; height:5rem; font-size:1.2rem; color:white;
+                  style="margin:0; width:13%; height:3.5rem; font-size:1.2rem; color:white;
                   border-radius:0px 5px 5px 0px; background-color:#fd8365">
                   <i class="fa fa-sign-in"></i>
                </button>
