@@ -31,9 +31,12 @@ function join(id) {
                console.log(data);
                appointList(data.data);
             } else {
-               console.log(data.msg);
-               document.getElementById("showBox").removeEventListener('scroll', func);
-               $("#loading").css("display", "none");
+               if (page == 0) $("#list").html("");
+               else {
+                  console.log(data.msg);
+                  document.getElementById("showBox").removeEventListener('scroll', func);
+                  $("#loading").css("display", "none");
+               }
             }
          }
       });

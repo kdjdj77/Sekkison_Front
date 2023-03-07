@@ -14,13 +14,35 @@
    <script src="../vendor/timepicker/timepicker.js"></script>
    <script src="../js/vars.js"></script>
    <style>
+      label, input { display:inline-block; }
       .radioBtn {
          cursor:pointer;
          border:1px solid black;
          padding:0.2rem;
          border-radius:5px;
       }
-      input:checked + label{ background-color:lightsalmon; }
+      .publicBtn {
+         text-align:center;
+         float:right;
+         width:3.5rem;
+         cursor:pointer;
+         color:gray;
+         border:1px solid gray;
+         padding:0.2rem;
+         margin:0;
+      }
+      input[name=isPublic]:checked + label{
+         color:white;
+         font-weight:bold;
+         background-color:darkcyan;
+         border:1px solid gray;
+      }
+      input[name=tag]:checked + label{
+         color:white;
+         font-weight:bold;
+         background-color:lightsalmon;
+         border:1px solid orangered;
+      }
       textarea {font-family: 'Nanum Gothic', sans-serif;}
       .hideMap { bottom:-100vh; }
       .onMap { bottom:0; }
@@ -47,6 +69,10 @@
                      value="00:00" readonly/>
                   <i style="font-size:1.3rem; cursor:pointer;" class="fa fa-clock-o"></i>
                </label>
+               <input type="radio" style="width:0; height:0;" name="isPublic" id="falseP" value="false">
+               <label for="falseP" class="publicBtn">비공개</label>
+               <input type="radio" style="width:0; height:0;" name="isPublic" id="trueP" value="true" checked>
+               <label for="trueP" class="publicBtn">공개</label>
             </div>
             <div style="margin:1rem 0 0.5rem 0; width:100%; display:flex; flex-wrap:wrap; justify-content: space-around;">
                <input type="radio" style="width:0; height:0;" name="tag" id="ftf" value="0" checked>

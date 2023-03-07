@@ -39,36 +39,38 @@ let posX, posY;
          cache:false,
          success : function(data){
             if (data.success) {
-               console.log("데이터 받기 성공");
+               console.log("약속 데이터 받기 성공");
                console.log(data);
                set(data.data);
-               loadMembers(aid, data.data.memo);
+               loadMembers(aid, data.data.memo, data.data.type);
             } else console.log(data.msg);
          }
       });
    }
-   function loadMembers(aid, master) {
+   function loadMembers(aid, master, type) {
       $.ajax({
          url:`${path}/appoints/members/${aid}`,
          type:"GET",
          cache:false,
          success : function(data){
             if (data.success) {
-                  console.log("데이터 받기 성공");
+                  console.log("멤버 데이터 받기 성공");
                   console.log(data);
-                  setMembers(data.data, master);
+                  setMembers(data.data, master, type);
             } else console.log(data.msg);
          }
       });
    }
    function set(data) {
+      if (data.type != "FTF") $("#mapBox").remove();
+
       $("#title").html(data.title);
       $("#content").html(data.content);
       $("#posX").html(data.posX);
       $("#posY").html(data.posY);
       posX = data.posX;
       posY = data.posY;
-      $("#addressDetail").html(data.addressDetail);
+      $("#addressDetail").html(`${data.addressDetail == null ? "" : `위치 : ${data.addressDetail}`}`);
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
@@ -76,7 +78,7 @@ let posX, posY;
       $("#isPublic").html(data.isPublic ? "공개" : "비공개");
       $("#isRecruit").html(data.isRecruit ? "모집중" : "모집완료");
    }
-   function setMembers(data, master) {
+   function setMembers(data, master, type) {
       data.forEach(member => {
          let meter = "...m";
          let row = `
@@ -94,7 +96,7 @@ let posX, posY;
                      <i class="fa fa-times"></i>
                   </button>` : ""
                }
-               <div style="float:right;">(${meter})</div>
+               <div style="float:right;">(${type == "FTF" ? meter : ""})</div>
             </div><br>
          `;
          $("#members").append(`${row}\n`);

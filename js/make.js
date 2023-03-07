@@ -23,6 +23,7 @@ $(function () {
    }).next('button').append('<i style="font-size:1.2rem;" class="fa fa-calendar"></i>');
    $('#date').datepicker('setDate', 'today');
 });
+
 // makeAppoint
 (function ($) {
    $("input[name='tag']").change(function() {
@@ -31,7 +32,6 @@ $(function () {
       $(`#appoint_${tagNum}`).removeClass("off");
    });
 })(jQuery)
-
 function cntUp(num) {
    let cnt = Number($(`#maxCnt_${num}`).val());
    if (cnt == 50) return;
@@ -49,6 +49,7 @@ function submitAppoint(type) {
    if (title == null || title == "") { alert("제목이 올바르지 않습니다"); return; }
    let date = $("#date").val();
    let time = $("#time").val();
+   let isPublic = $("input[name='isPublic']:checked").val();
 
    if (type == 0) {
       let maxCnt = Number($("#maxCnt_0").val());
@@ -63,6 +64,7 @@ function submitAppoint(type) {
       let content = $("#content_0").val().trim();
       data = {
          "typeInteger":type,
+         "isPublic":isPublic,
          "title":title,
          "date":date,
          "time":time,
@@ -81,6 +83,7 @@ function submitAppoint(type) {
       let content = $("#content_1").val().trim();
       data = {
          "typeInteger":type,
+         "isPublic":isPublic,
          "title":title,
          "date":date,
          "time":time,
@@ -91,6 +94,7 @@ function submitAppoint(type) {
       let content = $("#content_2").val().trim();
       data = {
          "typeInteger":type,
+         "isPublic":isPublic,
          "content":content
       }
    }
