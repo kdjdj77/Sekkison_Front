@@ -70,13 +70,25 @@ let posX, posY;
       $("#posY").html(data.posY);
       posX = data.posX;
       posY = data.posY;
-      $("#addressDetail").html(`${data.addressDetail == null ? "" : `위치 : ${data.addressDetail}`}`);
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
       $('#D-d').html("D-" + Math.floor((new Date(data.dDay) - new Date()) / (1000*60*60*24)));
       $("#isPublic").html(data.isPublic ? "공개" : "비공개");
       $("#isRecruit").html(data.isRecruit ? "모집중" : "모집완료");
+      if (data.type == "FTF") $("#appointType").html("만남");
+      else if (data.type == "NFTF") $("#appointType").html("온라인");
+      else $("#appointType").html("나만의");
+
+      if (data.type == "FTF") {
+         $("#category").html(data.category);
+         $("#address").html(`주소 : ${data.address}`);
+         $("#addressDetail").html(`상세위치 : ${data.addressDetail}`);
+      } else {
+         $("#category").remove();
+         $("#address").remove();
+         $("#addressDetail").remove();
+      }
    }
    function setMembers(data, master, type) {
       data.forEach(member => {
@@ -96,7 +108,7 @@ let posX, posY;
                      <i class="fa fa-times"></i>
                   </button>` : ""
                }
-               <div style="float:right;">(${type == "FTF" ? meter : ""})</div>
+               <div style="float:right;">${type == "FTF" ? `(${meter})` : ""}</div>
             </div><br>
          `;
          $("#members").append(`${row}\n`);
