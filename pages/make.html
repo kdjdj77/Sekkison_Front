@@ -72,8 +72,9 @@
                   검색
                </button>
                <div style="width:60%; height:1px; background-color: black;"></div>
-               <input id="cate_0" type="text" style="width:100%; font-size:1rem;" value="" readonly>
-               <input id="address_0" type="text" style="width:100%; font-size:1rem; margin-bottom:0.5rem;" value="" readonly>
+               <input id="cate_0" type="text" style="width:100%; font-size:0.7rem;" value="" readonly>
+               <input id="address_0" type="text" style="width:100%; font-size:1rem; margin-bottom:0.5rem;
+                  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" value="" readonly>
                <input id="posX_0" type="hidden"><input id="posY_0" type="hidden">
 
                상세위치 추가<br>
@@ -111,7 +112,7 @@
       <button style="z-index:9; position:absolute; top:50px; right:0.2rem;" type="button" onclick="closeSearch();">
          <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
       </button>
-      <div id="selectedInfo" class="off" style="width:100%; height:7rem; z-index:8; position:absolute; bottom:50px;
+      <div id="selectedInfo" class="off" style="width:100%; height:10rem; z-index:8; position:absolute; bottom:50px;
          left:0; border-radius:5px 5px 0 0; padding:0.5rem;
          background-color:rgba(255, 255, 255, 0.9)">
          <div id="placeTag" style="font-size:0.7rem; color:dimgrey;"></div>
@@ -141,6 +142,7 @@
 
       document.getElementById("mapBox").classList.add("onMap");
       document.getElementById("mapBox").classList.remove("hideMap");
+      $("#kakaoMapSearch").val("");
    }
 
    // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -179,17 +181,18 @@
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, 'click', function() {
          document.getElementById("selectedInfo").classList.remove("off");
-         $("#placeName").html(`${place.place_name}`);
+         $("#placeName").html(place.place_name);
          $("#placeAddress").html(`주소 : ${place.road_address_name}`);
          $("#placePhone").html(`tel) ${place.phone}`);
-         $("#placeTag").html(`${place.category_name}`);
+         $("#placeTag").html(place.category_name);
 
-         $("#cate_0").val(`${place.category_name} (tel ${place.phone})`);
+         $("#cate_0").val(place.category_name);
          $("#address_0").val(`${place.road_address_name} ${place.place_name}`);
-         $("#posX").val(place.y);
-         $("#posY").val(place.x);
+         $("#posX").val(place.x);
+         $("#posY").val(place.y);
          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-         infowindow.setContent(`<div style="padding:1rem;font-size:12px;">${place.place_name}</div>`);
+         infowindow.setContent(`<div style="padding:1rem;font-size:12px; overflow: hidden;
+            text-overflow: ellipsis; white-space: nowrap; ">${place.place_name}</div>`);
          infowindow.open(map, marker);
       });
    }
