@@ -84,7 +84,11 @@
             <div style="margin:0.1%; background-color:#FBF5EF; color:black;
                width:99%; padding:10px; border:2px solid #F6E3CE; border-radius:5px">
                <a style="text-decoration:none; color:black;"
-                  href="./otherinfo.html?userId=${data.id}">${data.name}</a>
+                  href="./otherinfo.html?userId=${data.id}">
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${data.id}">
+                  ${data.name}
+               </a>
                ${setSearchFriendBtn(data)}
             </div>
          `;
