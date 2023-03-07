@@ -228,36 +228,37 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services&autoload=false"></script>
 <script>
    function closeSearch() {
-      kakao.maps.load(function() {
-         var map = new kakao.maps.Map(node, options);
-      });
       document.getElementById("mapBox").classList.add("hideMap");
       document.getElementById("mapBox").classList.remove("onMap");
    }
    function goSearch() {
-      let keyword = $("#kakaoMapSearch").val().trim();
-      if (keyword == null || keyword == "") {
-         alert("검색어를 입력해 주세요");
-         return;
-      }
+      kakao.maps.load(function() {
+         //var map = new kakao.maps.Map(node, options);
 
-      document.getElementById("mapBox").classList.add("onMap");
-      document.getElementById("mapBox").classList.remove("hideMap");
+         let keyword = $("#kakaoMapSearch").val().trim();
+         if (keyword == null || keyword == "") {
+            alert("검색어를 입력해 주세요");
+            return;
+         }
 
-      // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-      var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-      
-      var mapContainer = document.getElementById('mapp'), // 지도를 표시할 div 
-         mapOption = {
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-         };  
-      // 지도를 생성합니다    
-      var map = new kakao.maps.Map(mapContainer, mapOption); 
-      // 장소 검색 객체를 생성합니다
-      var ps = new kakao.maps.services.Places(); 
-      // 키워드로 장소를 검색합니다
-      ps.keywordSearch(keyword, placesSearchCB2); 
+         document.getElementById("mapBox").classList.add("onMap");
+         document.getElementById("mapBox").classList.remove("hideMap");
+
+         // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+         var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+         
+         var mapContainer = document.getElementById('mapp'), // 지도를 표시할 div 
+            mapOption = {
+               center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+               level: 3 // 지도의 확대 레벨
+            };  
+         // 지도를 생성합니다    
+         var map = new kakao.maps.Map(mapContainer, mapOption); 
+         // 장소 검색 객체를 생성합니다
+         var ps = new kakao.maps.services.Places(); 
+         // 키워드로 장소를 검색합니다
+         ps.keywordSearch(keyword, placesSearchCB2); 
+      });
    }
    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
    function placesSearchCB2 (data, status, pagination) {
