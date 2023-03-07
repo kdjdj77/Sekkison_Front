@@ -38,7 +38,11 @@
          let name = data.name + (data.memo == null ? "" : `(${data.memo})`);
          const row = `
             <div style="margin:1px; background-color:#FBF5EF; color:black; width:100%; padding:10px; border:2px solid #F6E3CE; border-radius:5px">
-               <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">${name}</a>
+               <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${data.id}">
+                  ${name}
+               </a>
                <button style="float:right; font-size:1.5rem; color:black; margin-right:10px;"
                   onclick="msgSend(${data.id})">
                   <i class="fa fa-envelope-o"></i>
