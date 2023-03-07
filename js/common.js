@@ -170,7 +170,12 @@ $(function () {
 (function ($) {
    "use strict";
    $("#closeMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
-   $("#showMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
+   $("#showMakeAppointBtn").click(function() {
+      $("#makeAppoint").fadeToggle("fast"); 
+      const script = document.createElement('script');
+      script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services";
+      document.body.appendChild(script);
+   });
 
    $("input[name='tag']").change(function() {
       let tagNum = $("input[name='tag']:checked").val();
