@@ -5,9 +5,13 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>make</title>
-   <link rel="stylesheet" href="../css/basic.css"/>
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services"></script>
+   <link rel="stylesheet" href="../css/basic.css"/>
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+   <link rel="stylesheet" href="../vendor/jquery/jquery-ui.min.css"/>
+   <link rel="stylesheet" href="../vendor/timepicker/timepicker.css"/>
+   <script src="../vendor/jquery/jquery-ui.min.js"></script>
+   <script src="../vendor/timepicker/timepicker.js"></script>
    <script src="../js/vars.js"></script>
    <style>
       .radioBtn {
@@ -105,16 +109,7 @@
       </button>      
    </div>
 </body>
-<script>
-   // makeAppoint
-   (function ($) {
-      $("input[name='tag']").change(function() {
-         let tagNum = $("input[name='tag']:checked").val();
-         $(".tagBox").addClass("off");
-         $(`#appoint_${tagNum}`).removeClass("off");
-      });
-   })(jQuery)
-</script>
+<script src="../js/make.js"></script>
 <script>
    function closeSearch() {
       document.getElementById("mapBox").classList.add("hideMap");
@@ -128,7 +123,7 @@
       }
       // 키워드로 장소를 검색합니다
       ps.keywordSearch(keyword, placesSearchCB2);
-      
+
       document.getElementById("mapBox").classList.add("onMap");
       document.getElementById("mapBox").classList.remove("hideMap");
    }
