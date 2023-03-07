@@ -105,9 +105,9 @@
 
 		</div>
 	</div>
-   <div id="makeAppoint" class="orange" style="overflow:scroll; z-index:7; position:fixed;
+   <div id="makeAppoint" class="orange" style="display:none; overflow:scroll; z-index:7; position:fixed;
       padding-top:50px; padding-bottom:50px;
-      left:50vw; top:50vh; transform:translate(-50%, -50%); width:100vw; height:100vh;">
+      left:50vw; top:50vh; transform:translate(-50%, -50%); width:100%; max-width:390px; height:100vh;">
       <div style="position:relative; height:100%; padding:2rem; font-size:1rem;" class="orange">
          <button id="closeMakeAppointBtn" style="position:absolute; top:0; right:0.2rem;" type="button">
             <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
@@ -179,19 +179,30 @@
          </div>
       </div>
    </div>
-   <div id="mapBox" class="hideMap" style="width:100vw; height:100vh; z-index:8; position:fixed;
-      left:0; transition:.25s all;">
+   <div id="mapBox" class="hideMap" style="background-color:antiquewhite; width:100%; max-width:390px; height:100vh;
+      z-index:8; position:fixed; left:50%; transform:translate(-50%, 0); transition:.25s all;">
       <div id="mapp" style="width:100%;height:100%;"></div>
+      <button style="position:absolute; top:50px; right:0.2rem;" type="button" onclick="closeSearch();">
+         <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
+      </button>
       <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services"></script>
       <script>
+         function closeSearch() {
+            document.getElementById("mapBox").classList.add("hideMap");
+            document.getElementById("mapBox").classList.remove("onMap");
+         }
          function goSearch() {
             let keyword = $("#kakaoMapSearch").val().trim();
-            if (keyword == null || keyword == "") return;
+            if (keyword == null || keyword == "") {
+               alert("검색어를 입력해 주세요");
+               return;
+            }
 
-            document.getElementById("mapBox").classList.replace("hideMap", "onMap");
+            document.getElementById("mapBox").classList.add("onMap");
+            document.getElementById("mapBox").classList.remove("hideMap");
 
             // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-            var infowindow = new kakao.maps.InfoWindow({zIndex:9});
+            var infowindow = new kakao.maps.InfoWindow({zIndex:1});
             
             var mapContainer = document.getElementById('mapp'), // 지도를 표시할 div 
                mapOption = {
