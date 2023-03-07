@@ -157,3 +157,8 @@ function join(id) {
    window.addEventListener('scroll', func);
 })(jQuery);
 
+window.onresize = function(event) {
+   let body = document.body.clientHeight;
+   let header = document.getElementById('searchBox').clientHeight;
+   document.getElementById('showBox').style.height = body - 140 - header + 'px';
+}

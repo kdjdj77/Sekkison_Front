@@ -81,13 +81,14 @@ let posX, posY;
                <a style="float:left; text-decoration:none; color:black; font-size:1rem;"
                   href="./otherinfo.html?userId=${member.id}">
                   ${member.name}
-                  ${member.memo == "master" ? `<i class="fa fa-star"></i>` : ""}
+                  ${member.name == master ? `<i class="fa fa-star"></i>` : ""}
                </a>
                ${master == localStorage.getItem("sks_name") && member.name != master ? `
                   <button style="float:left; font-size:1.5rem; color:red;"
                      type="button" onclick="deleteMember(${member.id})">
                      <i class="fa fa-times"></i>
-                  </button>` : ""}
+                  </button>` : ""
+               }
                <div style="float:right;">(${meter})</div>
             </div><br>
          `;
