@@ -62,7 +62,7 @@
                인원 : 
                <button type="button" onclick="cntDown(0);" style="padding:0.5rem;"><i class="fa fa-minus"></i></button>
                <input id="maxCnt_0" style="font-size:1rem; width:1.5rem; text-align:center;"
-                  type="text" value="0" disabled>
+                  type="text" value="1" disabled>
                <button type="button" onclick="cntUp(0);" style="padding:0.5rem;"><i class="fa fa-plus"></i></button><br>
 
                <input id="kakaoMapSearch" style="width:60%; margin-top:1rem; font-size:1rem;" type="text" placeholder="장소 검색" maxlength=20/>
@@ -75,32 +75,40 @@
                <input id="cate_0" type="text" style="width:100%; font-size:0.7rem;" value="" readonly>
                <input id="address_0" type="text" style="width:100%; font-size:1rem; margin-bottom:0.5rem;
                   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" value="" readonly>
+               <input id="phone_0" type="hidden">
                <input id="posX_0" type="hidden"><input id="posY_0" type="hidden">
 
                상세위치 추가<br>
-               <input id="AD_0" type="text" style="width:90%;" maxlength=20 placeholder="상세위치 입력">
+               <input id="AD_0" type="text" style="width:90%;" maxlength=20 placeholder="상세위치 입력" value="">
                <div style="width:90%; height:1px; background-color: black;"></div><br>
 
                <textarea id="content_0" style="resize:none; font-size:1rem; height:5rem; width:100%;
-                  outline:1px solid black;" placeholder="내용"></textarea>
+                  outline:1px solid black;" placeholder="내용" maxlength="500"></textarea>
                <button style="width:100%; border:1px solid black; padding:0.2rem;
-                  text-align:center; border-radius:5px; background-color: bisque;" type="button">완료</button>
+                  text-align:center; border-radius:5px; background-color: bisque;" type="button"
+                  onclick="submitAppoint(0);">완료</button>
             </div>
 
             <div id="appoint_1" class="tagBox off">
                인원 : 
                <button type="button" onclick="cntDown(1);" style="padding:0.5rem;"><i class="fa fa-minus"></i></button>
                <input id="maxCnt_1" style="font-size:1rem; width:1.5rem; text-align:center;"
-                  type="text" value="0" disabled>
+                  type="text" value="1" disabled>
                <button type="button" onclick="cntUp(1);" style="padding:0.5rem;"><i class="fa fa-plus"></i></button><br><br>
 
                <textarea id="content_1" style="resize:none; font-size:1rem; height:5rem; width:100%;
-                  outline:1px solid black;" placeholder="내용"></textarea>
+                  outline:1px solid black;" placeholder="내용" maxlength="500"></textarea>
+               <button style="width:100%; border:1px solid black; padding:0.2rem;
+                  text-align:center; border-radius:5px; background-color: bisque;" type="button"
+                  onclick="submitAppoint(1);">완료</button>
             </div>
 
             <div id="appoint_2" class="tagBox off">
                <textarea id="content_2" style="resize:none; font-size:1rem; height:5rem; width:100%;
-                  outline:1px solid black;" placeholder="내용"></textarea>
+                  outline:1px solid black;" placeholder="내용" maxlength="500"></textarea>
+               <button style="width:100%; border:1px solid black; padding:0.2rem;
+                  text-align:center; border-radius:5px; background-color: bisque;" type="button"
+                  onclick="submitAppoint(2);">완료</button>
             </div>
          </div>
       </div>
@@ -186,6 +194,7 @@
          $("#placePhone").html(`tel) ${place.phone}`);
          $("#placeTag").html(place.category_name);
 
+         $("#phone_0").val(place.phone);
          $("#cate_0").val(place.category_name);
          $("#address_0").val(`${place.road_address_name} ${place.place_name}`);
          $("#posX").val(place.x);

@@ -39,6 +39,73 @@ function cntUp(num) {
 }
 function cntDown(num) {
    let cnt = Number($(`#maxCnt_${num}`).val());
-   if (cnt == 0) return;
+   if (cnt == 1) return;
    $(`#maxCnt_${num}`).val(cnt-1);
+}
+function submitAppoint(type) {
+   let data;
+
+   let title = $("#title").val().trim();
+   if (title == null || title == "") { alert("제목이 올바르지 않습니다"); return; }
+   let date = $("#date").val();
+   let time = $("#time").val();
+
+   if (type == 0) {
+      let maxCnt = Number($("#maxCnt_0").val());
+      if (maxCnt < 1) { alert("인원수가 올바르지 않습니다"); return; }
+      let category = $("#cate_0").val();
+      let address = $("#address_0").val();
+      if (address == null || address == "") { alert("주소를 검색해주세요"); return; }
+      let phone = $("#addPhone_0").val();
+      let posX = $("#posX_0").val().trim();
+      let posY = $("#posY_0").val().trim();
+      let addressDetail = $("#AD_0").val().trim();
+      let content = $("#content_0").val().trim();
+      data = {
+         "typeInteger":type,
+         "title":title,
+         "date":date,
+         "time":time,
+         "maxCnt":maxCnt,
+         "category":category,
+         "address":address,
+         "phone":phone,
+         "posX":posX,
+         "posY":posY,
+         "addressDetail":addressDetail,
+         "content":content
+      };
+   } else if (type == 1) {
+      let maxCnt = $("#maxCnt_1").val();
+      if (maxCnt < 1) { alert("인원수가 올바르지 않습니다"); return; }
+      let content = $("#content_1").val().trim();
+      data = {
+         "typeInteger":type,
+         "title":title,
+         "date":date,
+         "time":time,
+         "maxCnt":maxCnt,
+         "content":content
+      };
+   } else {
+      let content = $("#content_2").val().trim();
+      data = {
+         "typeInteger":type,
+         "content":content
+      }
+   }
+
+   $.ajax({
+      url:`${path}/appoints/${localStorage.getItem("sks_id")}`,
+      type:"POST",
+      data:data,
+      cache:false,
+      success : function(data){
+         if (data.success) {
+            console.log("약속 만들기 성공");
+            location.href=`../pages/appoint.html?id=${data.data}`;
+         }
+         else console.log("약속 만들기 실패");
+      }
+   });
 }
