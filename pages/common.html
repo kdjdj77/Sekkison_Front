@@ -9,21 +9,9 @@
    <script src="../vendor/jquery/jquery-ui.min.js"></script>
    <script src="../vendor/timepicker/timepicker.js"></script>
    <style>
-      .radioBtn {
-         cursor:pointer;
-         border:1px solid black;
-         padding:0.2rem;
-         border-radius:5px;
-      }
-      .orange{background-color:rgb(255, 222, 171);}
-      .orange2{background-color:rgb(255, 216, 158);}
       .friendOn { right:0px; }
       .friendOff { right:-250px; }
       .off { display:none; }
-      input:checked + label{ background-color:lightsalmon; }
-      textarea {font-family: 'Nanum Gothic', sans-serif;}
-      .hideMap { bottom:-100vh; }
-      .onMap { bottom:0; }
    </style>
 </head>
 <body>
@@ -105,87 +93,6 @@
 
 		</div>
 	</div>
-   <div id="makeAppoint" class="orange" style="display:none; overflow:scroll; z-index:7; position:fixed;
-      padding-top:50px; padding-bottom:50px;
-      left:50vw; top:50vh; transform:translate(-50%, -50%); width:100%; max-width:390px; height:100vh;">
-      <div style="position:relative; height:100%; padding:2rem; font-size:1rem;" class="orange">
-         <button id="closeMakeAppointBtn" style="position:absolute; top:0; right:0.2rem;" type="button">
-            <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
-         </button>
-         <h4 style="margin-bottom:3px;">약속만들기</h4><hr style="border-top:1px solid black;">
-         <inputBox>
-            <input id="title" style="width:90%; margin-top:1rem; font-size:1.3rem;" class="orange2" type="text" placeholder="제목" maxlength=20/>
-            <div style="width:90%; height:1px; background-color: black;"></div><br>
-
-            날짜 : <input id="date" style="width:6rem; font-size:1rem;" class="orange2" type="text" readonly><br><br>
-            시간 : 
-            <label>
-               <input id="time" style="width:3rem; font-size:1rem;" type="text" class="bs-timepicker orange2" 
-                  value="00:00" readonly/>
-               <i style="font-size:1.3rem; cursor:pointer;" class="fa fa-clock-o"></i>
-            </label>
-         </inputBox>
-         <selectBox style="margin:1rem 0 .5rem 0; width:100%; display:flex; flex-wrap:wrap; justify-content: space-around;">
-            <input type="radio" style="width:0; height:0;" name="tag" id="ftf" value="0" checked>
-            <label for="ftf" class="radioBtn">만남 약속</label>
-            <input type="radio" style="width:0; height:0;" name="tag" id="nftf" value="1">
-            <label for="nftf" class="radioBtn">온라인 약속</label>
-            <input type="radio" style="width:0; height:0;" name="tag" id="solo" value="2">
-            <label for="solo" class="radioBtn">나만의 약속</label>
-         </selectBox>
-         <hr style="border-top:1px solid black; margin-bottom:.2rem;">
-
-         <div id="appoint_0" class="tagBox">
-            인원 : 
-            <button type="button"><i class="fa fa-minus"></i></button>
-            <input id="maxCnt_0" class="orange2" style="font-size:1rem; width:2rem; text-align:center;"
-               type="text" value="0" disabled>
-            <button type="button"><i class="fa fa-plus"></i></button><br><br>
-
-            <input id="kakaoMapSearch" style="width:60%; margin-top:1rem; font-size:1rem;" class="orange2" type="text" placeholder="장소검색" maxlength=20/>
-            <button type="button" style="width:30%; border:1px solid black;
-               border-radius:5px; padding:0.2rem; font-size:1rem; background-color:bisque;"
-               onclick="goSearch();">
-               검색
-            </button>
-            <div style="width:60%; height:1px; background-color: black;"></div><br>
-            <input id="address_0" style="width:100%; font-size:1rem;" class="orange" value="">
-            <br>
-
-            상세위치<br>
-            <input id="AD_0" type="text" class="orange2" style="width:90%;" maxlength=20>
-            <div style="width:90%; height:1px; background-color: black;"></div><br>
-
-            <textarea id="content_0" class="orange2" style="resize:none; font-size:1rem; height:5rem; width:100%;
-               outline:1px solid black;" placeholder="내용"></textarea>
-            <button style="width:100%; border:1px solid black; padding:0.2rem;
-               text-align:center; border-radius:5px; background-color: bisque;" type="button">완료</button>
-         </div>
-
-         <div id="appoint_1" class="tagBox off">
-            인원 : 
-            <button type="button"><i class="fa fa-minus"></i></button>
-            <input id="maxCnt_1" class="orange2" style="font-size:1rem; width:2rem; text-align:center;"
-               type="text" value="0" disabled>
-            <button type="button"><i class="fa fa-plus"></i></button><br><br>
-
-            <textarea id="content_1" class="orange2" style="resize:none; font-size:1rem; height:5rem; width:100%;
-               outline:1px solid black;" placeholder="내용"></textarea>
-         </div>
-
-         <div id="appoint_2" class="tagBox off">
-            <textarea id="content_2" class="orange2" style="resize:none; font-size:1rem; height:5rem; width:100%;
-               outline:1px solid black;" placeholder="내용"></textarea>
-         </div>
-      </div>
-   </div>
-   <div id="mapBox" class="hideMap" style="background-color:antiquewhite; width:100%; max-width:390px; height:100vh;
-      z-index:8; position:fixed; left:50%; transform:translate(-50%, 0); transition:.25s all;">
-      <div id="mapp" style="width:100%;height:100%;"></div>
-      <button style="position:absolute; top:50px; right:0.2rem;" type="button" onclick="closeSearch();">
-         <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
-      </button>      
-   </div>
    <footer style="
          position:fixed;
          width:100vw;
@@ -211,7 +118,7 @@
             color:black;
             font-size:1.5rem;
             margin:5px;"><i class="fa fa-home"></i></a>
-      <a id="showMakeAppointBtn" style="
+      <a href="./make.html" style="
             cursor:pointer;
             text-decoration:none;
             color:black;
@@ -225,64 +132,4 @@
    </footer>
 </body>
 <script src="../js/common.js"></script>
-<script>
-   function closeSearch() {
-      document.getElementById("mapBox").classList.add("hideMap");
-      document.getElementById("mapBox").classList.remove("onMap");
-   }
-   function goSearch() {
-      let keyword = $("#kakaoMapSearch").val().trim();
-      if (keyword == null || keyword == "") {
-         alert("검색어를 입력해 주세요");
-         return;
-      }
-
-      document.getElementById("mapBox").classList.add("onMap");
-      document.getElementById("mapBox").classList.remove("hideMap");
-
-      // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-      var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-      
-      var mapContainer = document.getElementById('mapp'), // 지도를 표시할 div 
-         mapOption = {
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-         };  
-      // 지도를 생성합니다    
-      var map = new kakao.maps.Map(mapContainer, mapOption); 
-      // 장소 검색 객체를 생성합니다
-      var ps = new kakao.maps.services.Places(); 
-      // 키워드로 장소를 검색합니다
-      ps.keywordSearch(keyword, placesSearchCB2);
-
-      // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-      function placesSearchCB2 (data, status, pagination) {
-         if (status === kakao.maps.services.Status.OK) {
-            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-            // LatLngBounds 객체에 좌표를 추가합니다
-            var bounds = new kakao.maps.LatLngBounds();
-            for (var i=0; i<data.length; i++) {
-               displayMarker2(data[i]);    
-               bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-            }       
-            // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-            map.setBounds(bounds);
-         } 
-      }
-      // 지도에 마커를 표시하는 함수입니다
-      function displayMarker2(place) {
-         // 마커를 생성하고 지도에 표시합니다
-         var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(place.y, place.x) 
-         });
-         // 마커에 클릭이벤트를 등록합니다
-         kakao.maps.event.addListener(marker, 'click', function() {
-            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-            infowindow.open(map, marker);
-         });
-      }
-   }
-</script>
 </html>
