@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>make</title>
+   <link rel="stylesheet" href="../css/basic.css"/>
+   <link rel="stylesheet" href="../vendor/jquery/jquery-ui.min.css"/>
+   <link rel="stylesheet" href="../vendor/timepicker/timepicker.css"/>
+   <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+   <script src="../vendor/jquery/jquery-ui.min.js"></script>
+   <script src="../vendor/timepicker/timepicker.js"></script>
+   <script src="../js/vars.js"></script>
+   <style>
+      .radioBtn {
+         cursor:pointer; border:1px solid black; padding:0.2rem; border-radius:5px;
+      }
+   </style>
+</head>
+<body>
+   <div class="common" style="width:100%;"></div>
+   <div class="limiter">
+		<div class="container">
+			<div class="wrap">
+            <h4 style="margin-bottom:3px;">약속만들기</h4><hr>
+            <formBox style="padding:2rem; font-size:1rem;">
+               <inputBox>
+                  <input style="font-size:1.3rem;" id="title" type="text" placeholder="제목" maxlength=20/>
+                  <div style="width:100%; height:1px; background-color: black;"></div><br>
+
+                  날짜 : <input style="width:6rem; font-size:1rem;" id="date" type="text" readonly><br><br>
+                  시간 : 
+                  <label>
+                     <input style="width:3rem; font-size:1rem;" id="time" type="text" class="bs-timepicker" 
+                        value="00:00" readonly/>
+                     <i style="font-size:1.3rem;" class="fa fa-clock-o"></i>
+                  </label>
+               </inputBox>
+               <selectBox style="margin-top:1rem; width:100%; display:flex; flex-wrap:wrap; justify-content: space-around;">
+                  <div class="radioBtn">만남 약속</div>
+                  <div class="radioBtn">보통 약속</div>
+                  <div class="radioBtn">나만의 약속</div>
+               </selectBox>
+            </formBox>
+         </div>
+      </div>
+   </div>
+</body>
+<script>
+   $.datepicker.setDefaults({
+      dateFormat: 'yy.mm.dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+   });
+
+   $(function () {
+      $('.bs-timepicker').timepicker();
+      $('#date').datepicker({
+         showOn:"button",
+         buttonText: "",
+         changeMonth:true,
+         changeYear:true,
+         minDate: "0"
+      }).next('button').append('<i style="font-size:1.2rem;" class="fa fa-calendar"></i>');
+      $('#date').datepicker('setDate', 'today');
+   });
+</script>
+</html>

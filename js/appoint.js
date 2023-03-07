@@ -28,6 +28,9 @@ let posX, posY;
       let mapBox = document.getElementById("mapBox");
       mapBox.classList.toggle("hide");
       mapBox.classList.toggle("vis");
+      if (mapBox.classList.contains("hide"))
+         $(this).html(`<i class="fa fa-angle-up fa-2x"></i>`);
+      else $(this).html(`<i class="fa fa-angle-down fa-2x"></i>`);
    });
    function load(aid) {
       $.ajax({
@@ -77,9 +80,11 @@ let posX, posY;
       data.forEach(member => {
          let meter = "...m";
          let row = `
-            <div style="width:100%; margin:.6rem;">
+            <div style="width:100%; margin:1rem;">
                <a style="float:left; text-decoration:none; color:black; font-size:1rem;"
                   href="./otherinfo.html?userId=${member.id}">
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${member.id}">
                   ${member.name}
                   ${member.name == master ? `<i class="fa fa-star"></i>` : ""}
                </a>

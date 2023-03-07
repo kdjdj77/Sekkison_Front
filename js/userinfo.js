@@ -4,6 +4,8 @@ let isValidName = false;
    "use strict";
    userinfo();
 
+   $("#profileImg").attr("src",`${path}/userFiles/${localStorage.getItem("sks_id")}`)
+
    $("#logout").click(function() {
       localStorage.clear();
       location.href = "../index.html"

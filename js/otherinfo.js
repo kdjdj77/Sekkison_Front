@@ -20,6 +20,8 @@ let userId = request.getParameter("userId");
 
 (function ($) {
    "use strict";
+
+   $("#profileImg").attr("src", `${path}/userFiles/${userId}`);
    userinfo();
 
    function userinfo() {

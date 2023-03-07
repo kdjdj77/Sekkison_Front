@@ -1,6 +1,7 @@
 (function ($) {
    "use strict";
    //[search]
+   $("#headerProfileImg").attr("src", `${path}/userFiles/${localStorage.getItem("sks_id")}`);
 
    document.getElementById("myName").innerHTML = `나 : ${localStorage.getItem("sks_name")}`;
    document.getElementById("friendBtn").addEventListener('click', function() {
@@ -167,5 +168,10 @@ $(function () {
    $("#closeMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
    $("#showMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
 
+   $("input[name='tag']").change(function() {
+      let tagNum = $("input[name='tag']:checked").val();
+      $(".tagBox").addClass("off");
+      $(`#appoint_${tagNum}`).removeClass("off");
+   });
 
 })(jQuery)
