@@ -96,3 +96,16 @@ let posX, posY;
       });
    }
 })(jQuery);
+
+function deleteMember(id) {
+   $.ajax({
+      url:`${path}/appoints/members/${appointId}/${localStorage.getItem("sks_id")}/${id}`,
+      type:"DELETE",
+      cache:false,
+      success : function(data) { 
+         if (data.success) alert("강퇴 성공");
+         else alert("강퇴 실패");
+         window.location.reload();
+      }
+   });
+}
