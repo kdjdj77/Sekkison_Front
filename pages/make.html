@@ -25,6 +25,9 @@
       .hideMap { bottom:-100vh; }
       .onMap { bottom:0; }
       .off { display:none; }
+      .tagBox {
+         padding:0.5rem;
+      }
    </style>
 </head>
 <body>
@@ -33,49 +36,47 @@
 		<div class="container">
 			<div class="wrap">
             <h4 style="margin-bottom:3px;">약속만들기</h4><hr style="border-top:1px solid black;">
-            <inputBox>
+            <div style="width:100%; height:100%; padding:0 1rem 0 1rem;">
                <input id="title" style="width:90%; margin-top:1rem; font-size:1.3rem;" type="text" placeholder="제목" maxlength=20/>
-               <div style="width:90%; height:1px; background-color: black;"></div><br>
+               <div style="width:90%; height:1px; background-color: black; margin-bottom:0.5rem;"></div>
 
-               날짜 : <input id="date" style="width:6rem; font-size:1rem;" type="text" readonly><br><br>
+               날짜 : <input id="date" style="width:6rem; font-size:1rem; margin-bottom:0.5rem;" type="text" readonly><br>
                시간 : 
                <label>
                   <input id="time" style="width:3rem; font-size:1rem;" type="text" class="bs-timepicker" 
                      value="00:00" readonly/>
                   <i style="font-size:1.3rem; cursor:pointer;" class="fa fa-clock-o"></i>
                </label>
-            </inputBox>
-            <selectBox style="margin:1rem 0 0.5rem 0; width:100%; display:flex; flex-wrap:wrap; justify-content: space-around;">
+            </div>
+            <div style="margin:1rem 0 0.5rem 0; width:100%; display:flex; flex-wrap:wrap; justify-content: space-around;">
                <input type="radio" style="width:0; height:0;" name="tag" id="ftf" value="0" checked>
                <label for="ftf" class="radioBtn">만남 약속</label>
                <input type="radio" style="width:0; height:0;" name="tag" id="nftf" value="1">
                <label for="nftf" class="radioBtn">온라인 약속</label>
                <input type="radio" style="width:0; height:0;" name="tag" id="solo" value="2">
                <label for="solo" class="radioBtn">나만의 약속</label>
-            </selectBox>
+            </div>
             <hr style="border-top:1px solid black; margin-bottom:.2rem;">
 
             <div id="appoint_0" class="tagBox">
                인원 : 
-               <button type="button"><i class="fa fa-minus"></i></button>
-               <input id="maxCnt_0" style="font-size:1rem; width:2rem; text-align:center;"
+               <button type="button" onclick="cntDown(0);" style="padding:0.5rem;"><i class="fa fa-minus"></i></button>
+               <input id="maxCnt_0" style="font-size:1rem; width:1.5rem; text-align:center;"
                   type="text" value="0" disabled>
-               <button type="button"><i class="fa fa-plus"></i></button><br><br>
+               <button type="button" onclick="cntUp(0);" style="padding:0.5rem;"><i class="fa fa-plus"></i></button><br>
 
-               <input id="kakaoMapSearch" style="width:60%; margin-top:1rem; font-size:1rem;" type="text" placeholder="장소검색" maxlength=20/>
+               <input id="kakaoMapSearch" style="width:60%; margin-top:1rem; font-size:1rem;" type="text" placeholder="장소 검색" maxlength=20/>
                <button type="button" style="width:30%; border:1px solid black;
                   border-radius:5px; padding:0.2rem; font-size:1rem; background-color:bisque;"
                   onclick="openSearch();">
                   검색
                </button>
-               <div style="width:60%; height:1px; background-color: black;"></div><br>
+               <div style="width:60%; height:1px; background-color: black;"></div>
                <input id="cate_0" type="text" style="width:100%; font-size:1rem;" value="" readonly>
-               <input id="address_0" type="text" style="width:100%; font-size:1rem;" value="" readonly>
-               <input id="posX_0" type="hidden">
-               <input id="posY_0" type="hidden">
-               <br>
+               <input id="address_0" type="text" style="width:100%; font-size:1rem; margin-bottom:0.5rem;" value="" readonly>
+               <input id="posX_0" type="hidden"><input id="posY_0" type="hidden">
 
-               상세위치<br>
+               상세위치 추가<br>
                <input id="AD_0" type="text" style="width:90%;" maxlength=20 placeholder="상세위치 입력">
                <div style="width:90%; height:1px; background-color: black;"></div><br>
 
@@ -87,10 +88,10 @@
 
             <div id="appoint_1" class="tagBox off">
                인원 : 
-               <button type="button"><i class="fa fa-minus"></i></button>
-               <input id="maxCnt_1" style="font-size:1rem; width:2rem; text-align:center;"
+               <button type="button" onclick="cntDown(1);" style="padding:0.5rem;"><i class="fa fa-minus"></i></button>
+               <input id="maxCnt_1" style="font-size:1rem; width:1.5rem; text-align:center;"
                   type="text" value="0" disabled>
-               <button type="button"><i class="fa fa-plus"></i></button><br><br>
+               <button type="button" onclick="cntUp(1);" style="padding:0.5rem;"><i class="fa fa-plus"></i></button><br><br>
 
                <textarea id="content_1" style="resize:none; font-size:1rem; height:5rem; width:100%;
                   outline:1px solid black;" placeholder="내용"></textarea>
@@ -109,7 +110,17 @@
       <div id="mapp" style="width:100%;height:100%;"></div>
       <button style="z-index:9; position:absolute; top:50px; right:0.2rem;" type="button" onclick="closeSearch();">
          <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
-      </button>      
+      </button>
+      <div id="selectedInfo" class="off" style="width:100%; height:30%; z-index:8; position:absolute; bottom:50px;
+         left:0; border-radius:5px 5px 0 0; 
+         background-color:rgba(255, 255, 255, 0.8)">
+         <div id="placeTag" style="font-size:0.7rem; color:dimgrey;"></div>
+         <div id="placeName" style="font-size:1rem; font-weight:bold;"></div>
+         <div id="placeAddress" style="font-size:1rem;"></div>
+         <div id="placePhone" style="font-size:1rem;"></div>
+         <button style="width:100%; padding:0.5rem; border:1px solid black;
+            border-radius:5px;" onclick="closeSearch();">선택</button>
+      </div>
    </div>
 </body>
 <script src="../js/make.js"></script>
@@ -117,6 +128,7 @@
    function closeSearch() {
       document.getElementById("mapBox").classList.add("hideMap");
       document.getElementById("mapBox").classList.remove("onMap");
+      document.getElementById("selectedInfo").classList.add("off");
    }
    function openSearch() {
       let keyword = $("#kakaoMapSearch").val().trim();
@@ -166,13 +178,18 @@
       });
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, 'click', function() {
-         console.log(place);
-         $("#cate_0").val(place.category_name);
+         document.getElementById("selectedInfo").classList.remove("off");
+         $("#placeName").html(`${place.place_name}`);
+         $("#placeAddress").html(`주소 : ${place.road_address_name}`);
+         $("#placePhone").html(`tel) ${place.phone}`);
+         $("#placeTag").html(`${place.category_name}`);
+
+         $("#cate_0").val(`${place.category_name} (tel ${place.phone})`);
          $("#address_0").val(`${place.road_address_name} ${place.place_name}`);
          $("#posX").val(place.y);
          $("#posY").val(place.x);
          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+         infowindow.setContent(`<div style="padding:1rem;font-size:12px;">${place.place_name}</div>`);
          infowindow.open(map, marker);
       });
    }

@@ -31,3 +31,14 @@ $(function () {
       $(`#appoint_${tagNum}`).removeClass("off");
    });
 })(jQuery)
+
+function cntUp(num) {
+   let cnt = Number($(`#maxCnt_${num}`).val());
+   if (cnt == 50) return;
+   $(`#maxCnt_${num}`).val(cnt+1);
+}
+function cntDown(num) {
+   let cnt = Number($(`#maxCnt_${num}`).val());
+   if (cnt == 0) return;
+   $(`#maxCnt_${num}`).val(cnt-1);
+}
