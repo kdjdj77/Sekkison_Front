@@ -225,8 +225,9 @@
    </footer>
 </body>
 <script src="../js/common.js"></script>
+
 <script>
-   $.getScript('http://dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services&autoload=false', function() {
+   $.getScript('//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services&autoload=false', function() {
       daum.maps.load(function() {
          var map = new daum.maps.Map(el, options);
       });
