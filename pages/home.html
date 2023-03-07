@@ -7,13 +7,15 @@
    <title>home</title>
    <link rel="stylesheet" type="text/css" href="../css/basic.css">
    <link rel="stylesheet" type="text/css" href="../css/util.css">
+   <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+   <script src="../js/vars.js"></script>
 </head>
-<body>
+<body style="overflow:hidden;">
    <div class="common" style="width:100%;"></div>
    <div class="limiter">
 		<div class="container">
 			<div class="wrap">
-            <div id="searchBox" style="width:100%;">
+            <div id="searchBox" style="margin-bottom:1rem;">
                <select style="height:2rem;" name="ispublic" id="ispublic">
                   <option value="1">공개</option>
                   <option value="0">비공개</option>
@@ -22,14 +24,16 @@
                   <option value="1">모집중</option>
                   <option value="0">모집완료</option>
                </select>
-               <br><br>
-               <input name="search" id="search" type="text" style="width:100%; font-size:1.3rem;" placeholder="검색"/>
-               <hr><br><br>
+               <input name="search" id="search" type="text" style="
+                  margin-top:1rem; width:100%; font-size:1.3rem;" placeholder="검색"/>
+               <hr>
+            </div>
+            <div id="showBox" style="width:100%; overflow:scroll;">
                <div id="list" name="list">
 
 
                </div>
-               <div id="loading" style="width:100%; height:2rem">
+               <div id="loading" style="width:100%; height:2rem;">
                   
                </div>
             </div>
@@ -37,7 +41,10 @@
       </div>
    </div>
 </body>
-<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="../js/vars.js"></script>
+<script>
+   let body = document.body.clientHeight;
+   let header = document.getElementById('searchBox').clientHeight;
+   document.getElementById('showBox').style.height = body - 140 - header + 'px';
+</script>
 <script src="../js/home.js"></script>
 </html>
