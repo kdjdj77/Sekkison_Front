@@ -113,7 +113,7 @@ let isValidName = false;
       let name = user.name;
       let gender = user.gender == 'M' ? "남" : "여";
       let phone = user.phone;
-      let content = user.content;
+      let content = t(user.content);
 
       $("#username").html(`ID : ${username}`);
       $("#name").html(`별명 : ${name} <i style="cursor:pointer;" class="fa fa-pencil-square-o" onclick="changeName();"></i>`);

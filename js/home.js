@@ -46,7 +46,7 @@ function join(id) {
       
       result.forEach(appoint => {
          let id = appoint.id;
-         let title = appoint.title;
+         let title = t(appoint.title);
          let dday = Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
@@ -56,12 +56,10 @@ function join(id) {
          let isPublic = appoint.isPublic == true ? "공개" : "비공개";
          let isRecruit = appoint.isRecruit == true ? "모집중" : "모집완료";
          let appointType = " ";
-         let address;
-         if (appoint.type == "FTF") {
-            appointType = "만남";
-            let addressList = appoint.address == null ? ["",""] : appoint.address.split(" ");
-            address = `${addressList[0]} ${addressList[1]}`;
-         }
+         let adList = appoint.address == null ? ["",""] : appoint.address.split(" ");
+         let address = (appoint.type != "FTF" ? "" : `${adList[0]} ${adList[1]}`);
+         
+         if (appoint.type == "FTF") appointType = "만남";
          else if (appoint.type == "NFTF") appointType = "온라인";
          else appointType = "나만의";
 

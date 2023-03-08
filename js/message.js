@@ -26,7 +26,7 @@
          let fromId = msg.fromId;
          let toId = msg.toId;
          let fromName;
-         let content = msg.content;
+         let content = t(msg.content);
          let regDate = msg.create_at;
 
          $.ajax({

@@ -45,7 +45,7 @@ let userId = request.getParameter("userId");
       let name = user.name;
       let gender = user.gender == 'M' ? "남" : "여";
       let phone = user.phone;
-      let content = user.content;
+      let content = t(user.content);
 
       $("#username").html("ID : " + idSetStar(username));
       $("#name").html("별명 : " + name);

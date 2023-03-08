@@ -63,8 +63,8 @@ let appointId = request.getParameter("id");
    function set(data) {
       if (data.type != "FTF") $("#mapBox").remove();
 
-      $("#title").html(data.title);
-      $("#content").html(data.content);
+      $("#title").html(t(data.title));
+      $("#content").html(t(data.content));
       $("#posX").html(data.posX);
       $("#posY").html(data.posY);
       setKakaoMap(data.posX, data.posY);
@@ -82,7 +82,7 @@ let appointId = request.getParameter("id");
       if (data.type == "FTF") {
          $("#category").html(data.category);
          $("#address").html(`주소 : ${data.address}`);
-         $("#addressDetail").html(`상세위치 : ${data.addressDetail}`);
+         $("#addressDetail").html(`상세 : ${data.addressDetail}`);
       } else {
          $("#category").remove();
          $("#address").remove();
