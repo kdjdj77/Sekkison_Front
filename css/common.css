@@ -1,0 +1,39 @@
+/* shantell-sans-500 - latin */
+@font-face {
+   font-display: auto; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Shantell Sans';
+   font-style: bold;
+   font-weight: 500;
+   src: url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.eot'); /* IE9 Compat Modes */
+   src: url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/googleFont/shantell-sans-v4-latin/shantell-sans-v4-latin-500.svg#ShantellSans') format('svg'); /* Legacy iOS */
+}
+/* nanum-gothic-regular - korean_latin */
+@font-face {
+   font-display: auto; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Nanum Gothic';
+   font-style: normal;
+   font-weight: 400;
+   src: url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.eot'); /* IE9 Compat Modes */
+   src: url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-regular.svg#NanumGothic') format('svg'); /* Legacy iOS */
+ }
+ /* nanum-gothic-700 - korean_latin */
+ @font-face {
+   font-display: auto; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Nanum Gothic';
+   font-style: normal;
+   font-weight: 700;
+   src: url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.eot'); /* IE9 Compat Modes */
+   src: url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/googleFont/nanum-gothic-v21-korean_latin/nanum-gothic-v21-korean_latin-700.svg#NanumGothic') format('svg'); /* Legacy iOS */
+ }

@@ -1,6 +1,7 @@
 (function ($) {
    "use strict";
    //[search]
+   $("#headerProfileImg").attr("src", `${path}/userFiles/${localStorage.getItem("sks_id")}`);
 
    document.getElementById("myName").innerHTML = `나 : ${localStorage.getItem("sks_name")}`;
    document.getElementById("friendBtn").addEventListener('click', function() {
@@ -37,7 +38,11 @@
          let name = data.name + (data.memo == null ? "" : `(${data.memo})`);
          const row = `
             <div style="margin:1px; background-color:#FBF5EF; color:black; width:100%; padding:10px; border:2px solid #F6E3CE; border-radius:5px">
-               <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">${name}</a>
+               <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${data.id}">
+                  ${name}
+               </a>
                <button style="float:right; font-size:1.5rem; color:black; margin-right:10px;"
                   onclick="msgSend(${data.id})">
                   <i class="fa fa-envelope-o"></i>
@@ -79,7 +84,11 @@
             <div style="margin:0.1%; background-color:#FBF5EF; color:black;
                width:99%; padding:10px; border:2px solid #F6E3CE; border-radius:5px">
                <a style="text-decoration:none; color:black;"
-                  href="./otherinfo.html?userId=${data.id}">${data.name}</a>
+                  href="./otherinfo.html?userId=${data.id}">
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${data.id}">
+                  ${data.name}
+               </a>
                ${setSearchFriendBtn(data)}
             </div>
          `;
@@ -135,37 +144,3 @@ function friendSend(toId, obj) {
    xmlhttp.open("POST", `${path}/friends?fromId=${fromId}&toId=${toId}`, true);
    xmlhttp.send();
 }
-// date/time picker
-$.datepicker.setDefaults({
-   dateFormat: 'yy.mm.dd',
-   prevText: '이전 달',
-   nextText: '다음 달',
-   monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-   monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-   dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-   dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-   dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-   showMonthAfterYear: true,
-   yearSuffix: '년'
-});
-
-$(function () {
-   $('.bs-timepicker').timepicker();
-   $('#date').datepicker({
-      showOn:"button",
-      buttonText: "",
-      changeMonth:true,
-      changeYear:true,
-      minDate: "0"
-   }).next('button').append('<i style="font-size:1.2rem;" class="fa fa-calendar"></i>');
-   $('#date').datepicker('setDate', 'today');
-});
-
-// makeAppoint
-(function ($) {
-   "use strict";
-   $("#closeMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
-   $("#showMakeAppointBtn").click(function() { $("#makeAppoint").fadeToggle("fast"); });
-
-
-})(jQuery)
