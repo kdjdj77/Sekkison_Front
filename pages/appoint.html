@@ -60,13 +60,8 @@
 </body>
 <script src="../js/appoint.js"></script>
 <script>
-   var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-   let mapOption = { 
-         center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
-         level: 3 // 지도의 확대 레벨
-      };
    var map = new kakao.maps.Map(
-      mapContainerdocument.getElementById('map'),
+      document.getElementById('map'),
       { center: new kakao.maps.LatLng(posX, posY), level: 3 }
    ); // 지도를 생성합니다
 
