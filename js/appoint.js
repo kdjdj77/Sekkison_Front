@@ -127,3 +127,19 @@ function deleteMember(id) {
       }
    });
 }
+// kaako map
+function setKakaoMap(posX, posY) {
+   let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = { 
+         center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
+         level: 3 // 지도의 확대 레벨
+      };
+
+   let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+   // 마커를 생성합니다
+   let marker = new kakao.maps.Marker({
+      map:map,
+      position: new kakao.maps.LatLng(posX, posY)
+   });
+}

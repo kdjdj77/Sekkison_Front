@@ -49,6 +49,8 @@
                         white-space: nowrap;" onclick="show(${id})">&nbsp;${content}
                      </div>
                      <div style="cursor:pointer; margin:auto; width:40%; text-align:right;" onclick="show(${id})">
+                        <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                           src="${path}/userFiles/${fromId}">   
                         ${fromName}&nbsp;
                      </div>
                      <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">

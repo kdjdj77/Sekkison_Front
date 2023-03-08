@@ -92,7 +92,11 @@ let tag = request.getParameter();
                   <div style="width:100%; height:50px; display:flex; flex-wrap:wrap; padding:0; margin-bottom:0;
                      border-top:1px solid black; border-bottom:1px solid black;">
                      <div style="margin:auto; width:80%; overflow: hidden; text-overflow: ellipsis;
-                        white-space: nowrap;">&nbsp;${fromName}님의 친구 초대입니다
+                        white-space: nowrap;">
+                        &nbsp;
+                        <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                           src="${path}/userFiles/${fromId}">
+                        ${fromName}님의 친구 초대입니다
                      </div>
                      <div style="margin:auto; width:20%; height:100%; padding:0; margin:0;">
                         <button type="button" style="float:right; margin:0; height:100%; width:50%; border:none;
@@ -137,7 +141,11 @@ let tag = request.getParameter();
             <div style="width:100%; height:50px; display:flex; flex-wrap:wrap; padding:0; margin-bottom:0;
                border-top:1px solid black;border-bottom:1px solid black;">
                <div style="cursor:pointer; margin:auto; width:80%; overflow: hidden; text-overflow: ellipsis;
-                  white-space: nowrap;" onclick="show(${inviteId})">&nbsp;${invitor}님의 약속 초대입니다
+                  white-space: nowrap;" onclick="show(${inviteId})">
+                  &nbsp;
+                  <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                     src="${path}/userFiles/${inviteId}">
+                  ${invitor}님의 약속 초대입니다
                </div>
                <div style="margin:auto; width:20%; height:100%; padding:0; margin:0;">
                   <button type="button" style="float:right; margin:0; height:100%; width:50%; border:none;
