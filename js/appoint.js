@@ -17,7 +17,6 @@ let Request = function() {
 }
 var request = new Request(); 
 let appointId = request.getParameter("id");
-let posX, posY;
 
 (function ($) {
    "use strict";
@@ -68,8 +67,7 @@ let posX, posY;
       $("#content").html(data.content);
       $("#posX").html(data.posX);
       $("#posY").html(data.posY);
-      posX = data.posX;
-      posY = data.posY;
+      setKakaoMap(data.posX, data.posY);
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);

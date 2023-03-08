@@ -60,19 +60,20 @@
 </body>
 <script src="../js/appoint.js"></script>
 <script>
-   var map = new kakao.maps.Map(
-      document.getElementById('map'),
-      { center: new kakao.maps.LatLng(posX, posY), level: 3 }
-   ); // 지도를 생성합니다
-   console.log(posX);
-   console.log(posY);
-   // 마커를 생성합니다
-   var marker = new kakao.maps.Marker({
-      map:map,
-      position: new kakao.maps.LatLng(posX, posY)
-   });
-   
-   // 마커가 지도 위에 표시되도록 설정합니다
-   marker.setMap(map);
+   function setKakaoMap(posX, posY) {
+      var map = new kakao.maps.Map(
+         document.getElementById('map'),
+         { center: new kakao.maps.LatLng(posX, posY), level: 3 }
+      ); // 지도를 생성합니다
+
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
+         map:map,
+         position: new kakao.maps.LatLng(posX, posY)
+      });
+      
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+   }
 </script>
 </html>
