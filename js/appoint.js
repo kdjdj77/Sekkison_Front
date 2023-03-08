@@ -67,7 +67,7 @@ let appointId = request.getParameter("id");
       $("#content").html(data.content);
       $("#posX").html(data.posX);
       $("#posY").html(data.posY);
-      setKakaoMap(data.posX, data.posY);
+      openSearch(data.posX, data.posY);
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
@@ -125,21 +125,5 @@ function deleteMember(id) {
          else alert("강퇴 실패");
          window.location.reload();
       }
-   });
-}
-// kaako map
-function setKakaoMap(posX, posY) {
-   let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-      mapOption = { 
-         center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
-         level: 3 // 지도의 확대 레벨
-      };
-
-   let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-   // 마커를 생성합니다
-   let marker = new kakao.maps.Marker({
-      map:map,
-      position: new kakao.maps.LatLng(posX, posY)
    });
 }
