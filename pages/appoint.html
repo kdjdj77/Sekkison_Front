@@ -6,6 +6,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>appoint</title>
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services"></script>
+   
    <link rel="stylesheet" href="../css/basic.css"/>
    <link rel="stylesheet" href="../css/appoint.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +61,7 @@
 </div>
 </body>
 <script src="../js/appoint.js"></script>
-<script defer>
+<script>
    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = { 
          center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
