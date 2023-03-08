@@ -30,6 +30,9 @@ $(function () {
       let tagNum = $("input[name='tag']:checked").val();
       $(".tagBox").addClass("off");
       $(`#appoint_${tagNum}`).removeClass("off");
+
+      if (tagNum == '2') $("#setPublic").addClass("off");
+      else $("#setPublic").removeClass("off");
    });
 })(jQuery)
 function cntUp(num) {
@@ -109,7 +112,7 @@ function submitAppoint(type) {
             console.log("약속 만들기 성공");
             location.href=`../pages/appoint.html?id=${data.data}`;
          }
-         else console.log("약속 만들기 실패");
+         else console.log(data.msg);
       }
    });
 }

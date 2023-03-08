@@ -54,9 +54,9 @@ let posX, posY;
          cache:false,
          success : function(data){
             if (data.success) {
-                  console.log("멤버 데이터 받기 성공");
-                  console.log(data);
-                  setMembers(data.data, master, type);
+               console.log("멤버 데이터 받기 성공");
+               console.log(data);
+               setMembers(data.data, master, type);
             } else console.log(data.msg);
          }
       });
