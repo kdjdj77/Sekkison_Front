@@ -61,16 +61,18 @@
 <script src="../js/appoint.js"></script>
 <script>
    function setKakaoMap(posX, posY) {
+      console.log("posX:"+ posX);
+      console.log("posY:"+ posY);
       // 키워드로 장소를 검색합니다
       //ps.keywordSearch('', placesSearchCB); 
 
       var bounds = new kakao.maps.LatLngBounds();
 
       displayMarker(posX, posY);
-      bounds.extend(new kakao.maps.LatLng(posX, posY));
 
-      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-      map.setBounds(bounds);
+      map.panTo(new kakao.maps.LatLng(posX, posY));
+      //bounds.extend(new kakao.maps.LatLng(posX, posY));
+      //map.setBounds(bounds);
    }
    // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
