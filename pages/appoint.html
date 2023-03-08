@@ -6,8 +6,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>appoint</title>
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78"></script>
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cab7544176ea7c6e5560a224d2808d78&libraries=services"></script>
-   
    <link rel="stylesheet" href="../css/basic.css"/>
    <link rel="stylesheet" href="../css/appoint.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,26 +60,23 @@
 </body>
 <script src="../js/appoint.js"></script>
 <script>
-   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-      mapOption = { 
+   var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+   let mapOption = { 
          center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
          level: 3 // 지도의 확대 레벨
       };
-   
-   var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-   
-   // 마커가 표시될 위치입니다 
-   var markerPosition  = new kakao.maps.LatLng(posX, posY); 
-   
+   var map = new kakao.maps.Map(
+      mapContainerdocument.getElementById('map'),
+      { center: new kakao.maps.LatLng(posX, posY), level: 3 }
+   ); // 지도를 생성합니다
+
    // 마커를 생성합니다
    var marker = new kakao.maps.Marker({
-      position: markerPosition
+      map:map,
+      position: new kakao.maps.LatLng(posX, posY)
    });
    
    // 마커가 지도 위에 표시되도록 설정합니다
    marker.setMap(map);
-   
-   // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-   // marker.setMap(null);
 </script>
 </html>
