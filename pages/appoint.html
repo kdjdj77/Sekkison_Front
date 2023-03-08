@@ -62,16 +62,14 @@
 <script>
    function setKakaoMap(posX, posY) {
       var bounds = new kakao.maps.LatLngBounds();
-      displayMarker(posX, posY);
-      bounds.extend(new kakao.maps.LatLng(posY, posX));      
-      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+      displayMarker(posY, posX);
+      bounds.extend(new kakao.maps.LatLng(posY, posX));
       map.setBounds(bounds);
    }
-   function displayMarker(posX, posY) {
-      let markerPosition = new kakao.maps.LatLng(posX, posY);
+   function displayMarker(lat, lng) {
       var marker = new kakao.maps.Marker({
          map:map,
-         position: position 
+         position: new kakao.maps.LatLng(lat, lng)
       });
    }
    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
