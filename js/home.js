@@ -93,9 +93,10 @@ function join(id) {
                      </div>
                   </div>
                </div>
-               <button type="button" id="join" onclick="join(${id});"
+               <button type="button" id="join" ${appoint.isPublic ? `onclick="join(${id});"` : ""}
                   style="margin:0; width:13%; height:5rem; font-size:1.2rem; color:white;
-                  border-radius:0px 5px 5px 0px; background-color:#fd8365">
+                  border-radius:0px 5px 5px 0px; 
+                  ${appoint.isPublic ? `background-color:#fd8365` : `background-color:##F0F0F0`}">
                   <i class="fa fa-sign-in"></i>
                </button>
             </div>

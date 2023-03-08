@@ -97,7 +97,10 @@ function submitAppoint(type) {
       let content = $("#content_2").val().trim();
       data = {
          "typeInteger":type,
-         "isPublic":isPublic,
+         "title":title,
+         "date":date,
+         "time":time,
+         "isPublic":false,
          "content":content
       }
    }
