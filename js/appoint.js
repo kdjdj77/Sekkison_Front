@@ -67,7 +67,7 @@ let appointId = request.getParameter("id");
       $("#content").html(data.content);
       $("#posX").html(data.posX);
       $("#posY").html(data.posY);
-      openSearch(data.posX, data.posY);
+      setKakaoMap(data.posX, data.posY);
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
       $("#dDay").html(data.dDay);
