@@ -38,4 +38,4 @@
       if (user.id == localStorage.getItem("sks_id")) $("#phone").html("휴대폰 : " + phone);
       $("#content").html(content);
    }
-})(jQuery);
+})(jQuery);   
