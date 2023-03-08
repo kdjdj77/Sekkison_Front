@@ -100,7 +100,6 @@ function submitAppoint(type) {
          "title":title,
          "date":date,
          "time":time,
-         "isPublic":false,
          "content":content
       }
    }

@@ -47,7 +47,7 @@ function join(id) {
       result.forEach(appoint => {
          let id = appoint.id;
          let title = appoint.title;
-         let dday = String(Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24)));
+         let dday = Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
          let memo = appoint.memo.split('&');
@@ -88,15 +88,15 @@ function join(id) {
                                  src="${path}/userFiles/${masterId}">`}
                            ${masterName}
                         </div>
-                        <div style="font-weight:bold; padding-bottom:0.1rem;">D-${dday}</div>
+                        <div style="font-weight:bold; padding-bottom:0.1rem;">${dday < 0 ? "종료" : `D-${dday}`}</div>
                         <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
                      </div>
                   </div>
                </div>
                <button type="button" id="join" ${appoint.isPublic ? `onclick="join(${id});"` : ""}
-                  style="margin:0; width:13%; height:5rem; font-size:1.2rem; color:white;
-                  border-radius:0px 5px 5px 0px; 
-                  ${appoint.isPublic ? `background-color:#fd8365` : `background-color:##F0F0F0`}">
+                  style="margin:0; width:13%; height:5rem; font-size:1.2rem;
+                  border-radius:0px 5px 5px 0px; ${appoint.isPublic ?
+                     `background-color:#fd8365; color:white;` : `background-color:dimgray; color:gray;`}">
                   <i class="fa fa-sign-in"></i>
                </button>
             </div>

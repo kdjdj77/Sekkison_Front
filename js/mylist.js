@@ -7,8 +7,10 @@ function join(id) {
    "use strict";
    //[search]
    newload();
+   function newload() { page = 0; load(); }
+   function addload() { page++; load(); }
 
-   function newload() {
+   function load() {
       page = 0;
       $.ajax({
          url:`${path}/appoints/list/${localStorage.getItem("sks_id")}/${page}`,
@@ -16,36 +18,21 @@ function join(id) {
          cache:false,
          success : function(data){
             if (data.success) {
-                  console.log("약속목록 받기 성공");
-                  console.log(data);
-                  newList(data.data);
-            } else {
-                  console.log(data.msg);
-                  $("#list").html("\n");
-            }
-         }
-      });
-   }
-   function load() {
-      page++;
-      $.ajax({
-         url:`${path}/appoints/list/${localStorage.getItem("sks_id")}/${page}`,
-         type:"GET",
-         cache:false,
-         success : function(data){
-            if (data.success) {
-               console.log("추가 약속목록 받기 성공");
+               console.log((page > 0 ? "추가" : "") + "약속목록 받기 성공");
                console.log(data);
-               addList(data.data);
+               appList(data.data);
             } else {
-               console.log(data.msg);
-               window.removeEventListener('scroll', func);
-               $("#loading").css("display", "none");
+               if (page == 0) $("#list").html("");
+               else {
+                  console.log(data.msg);
+                  window.removeEventListener('scroll', func);
+                  $("#loading").css("display", "none");
+               }
             }
          }
       });
    }
-   function newList(result) {      
+   function appList(result) {      
       const out = [];
       
       result.forEach(appoint => {
@@ -69,7 +56,7 @@ function join(id) {
                      </div>
                      <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
                   </div>
-                  <span>D-${dday}</span>
+                  ${dday < 0 ? `<span style="color:gray;">종료</span>` : `</span>D-${dday}</span>`}
                   <span style="float:right; margin-right:0.5rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
                </div>
                <button type="button" id="join" onclick="join(${id});"
@@ -81,45 +68,8 @@ function join(id) {
          `;
          out.push(row);
       });
-      $("#list").html(out.join("\n"));
-   }
-   function addList(result) {
-      const out = [];
-      
-      result.forEach(appoint => {
-         let id = appoint.id;
-         let title = appoint.title;
-         let date = appoint.dday;
-         let dday = String(Math.floor((new Date(date) - new Date()) / (1000*60*60*24)));
-         let head = appoint.headCnt;
-         let max = appoint.maxCnt;
-         let masterName = appoint.memo;
-
-         const row = `
-            <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${date}</div>
-            <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
-               display:flex; flex-wrap:wrap; margin-bottom:2px;">
-               <div style="width:85%; margin-left:2%;">
-                  <div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-                     <div style="width:70%; font-size:1.3rem; overflow: hidden; text-overflow: ellipsis;
-                        white-space: nowrap;">
-                        ${title}
-                     </div>
-                     <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
-                  </div>
-                  <span>D-${dday}</span>
-                  <span style="float:right; margin-right:0.5rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
-               </div>
-               <button type="button" id="join" onclick="join(${id});"
-                  style="margin:0; width:13%; height:3.5rem; font-size:1.2rem; color:white;
-                  border-radius:0px 5px 5px 0px; background-color:#fd8365">
-                  <i class="fa fa-sign-in"></i>
-               </button>
-            </div>
-         `;
-         out.push(row);
-      });
-      $("#list").append(out.join("\n"));
+      if (page == 0) $("#list").html(out.join("\n"));
+      else $("#list").append(out.join("\n"));
    }
 
    function checkVisible( element, check = 'above' ) {
