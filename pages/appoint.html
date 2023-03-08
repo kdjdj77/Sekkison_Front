@@ -64,7 +64,8 @@
       document.getElementById('map'),
       { center: new kakao.maps.LatLng(posX, posY), level: 3 }
    ); // 지도를 생성합니다
-
+   console.log(posX);
+   console.log(posY);
    // 마커를 생성합니다
    var marker = new kakao.maps.Marker({
       map:map,
