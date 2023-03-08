@@ -31,9 +31,9 @@ function join(id) {
                console.log(data);
                appointList(data.data);
             } else {
+               console.log(data.msg);
                if (page == 0) $("#list").html("");
                else {
-                  console.log(data.msg);
                   document.getElementById("showBox").removeEventListener('scroll', func);
                   $("#loading").css("display", "none");
                }
@@ -67,8 +67,8 @@ function join(id) {
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
                display:flex; flex-wrap:wrap; margin-bottom:2px;">
                <div style="width:85%; margin-left:2%;">
-                  <div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-                     <div style="width:70%; font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
+                  <div style="width:100%; display:flex; flex-wrap:wrap; flex-direction:row;">
+                     <div style="font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
                         white-space: nowrap; cursor:pointer; padding:0;" onclick="join(${id});">
                         <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
                            padding:0 .2rem 0 .2rem; margin:0;">${appointType}</span>
@@ -79,7 +79,7 @@ function join(id) {
                         ${title}<br>
                         <span style="font-size:0.5rem; font-weight:normal;">${address}</span>
                      </div>
-                     <div style="width:30%; float:right; text-align:right; padding-right:0.2rem;">
+                     <div style="flex:1; float:right; text-align:right; padding-right:0.2rem;">
                         <div style="padding:.1rem .1rem 0 0; cursor:pointer;" onclick="goInfo(${masterId});">
                            ${masterId==0 ? "" :
                               `<img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"

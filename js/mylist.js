@@ -38,7 +38,7 @@ function join(id) {
       result.forEach(appoint => {
          let id = appoint.id;
          let title = appoint.title;
-         let date = appoint.dday;
+         let date = appoint.dday.substring(0, appoint.dday.length-3);
          let dday = String(Math.floor((new Date(date) - new Date()) / (1000*60*60*24)));
          let head = appoint.headCnt;
          let max = appoint.maxCnt;
@@ -49,12 +49,14 @@ function join(id) {
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
                display:flex; flex-wrap:wrap; margin-bottom:2px;">
                <div style="width:85%; margin-left:2%;">
-                  <div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;">
-                     <div style="width:70%; font-size:1.3rem; overflow: hidden; text-overflow: ellipsis;
+                  <div style="margin-bottom:0.5rem; width:100%; display:flex; flex-wrap:wrap; flex-direction:row;">
+                     <div style="margin-top:0.5rem; font-size:1rem; font-weight:bold; overflow: hidden; text-overflow: ellipsis;
                         white-space: nowrap;">
                         ${title}
                      </div>
-                     <div style="width:30%; text-align:right; padding-right:0.2rem;">${masterName}</div>
+                     <div style="flex:1; margin-top:0.5rem; text-align:right; padding-right:0.2rem;">
+                        ${masterName}
+                     </div>
                   </div>
                   ${dday < 0 ? `<span style="color:gray;">종료</span>` : `</span>D-${dday}</span>`}
                   <span style="float:right; margin-right:0.5rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
