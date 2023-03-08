@@ -216,6 +216,7 @@
       });
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, 'click', function() {
+         console.log(place);
          document.getElementById("selectedInfo").classList.remove("off");
          $("#placeName").html(place.place_name);
          $("#placeAddress").html(`주소 : ${place.road_address_name}`);
