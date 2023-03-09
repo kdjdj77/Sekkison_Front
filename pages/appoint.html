@@ -31,6 +31,9 @@
             <br>
             <h1 style="margin-top:.5rem;">
                <div style="float:left;" id="title"></div>
+               <div style="float:left; border:1px solid black; border-radius:5px;
+                  padding:0.1rem; margin-left:0.5rem; background-color:darkcyan;"
+                  id="inviteBtn"></div>
                <span style="font-weight:bold; float:right" id="D-d"></span>
             </h1>
          </div><hr>
@@ -42,11 +45,34 @@
             <div id="addressDetail"></div>
          </div><hr>
          <div class="part">
-            <h2><i class="fa fa-user"></i> <span id="headCnt"></span>/<span id="maxCnt"></span></h2>
+            <h2>
+               <i class="fa fa-user"></i>
+               <span id="headCnt"></span>/<span id="maxCnt"></span>
+               <span id="outBtn" style="border:1px solid black; border-radius:5px;
+                  padding:0.2rem; margin-left:0.5rem; background-color:tomato;"></span>
+            </h2>
             <div id="members">
             
             </div>
          </div>
+      </div>
+   </div>
+</div>
+<div id="inviteFriendTab" style="position:fixed; left:50%; top:50%; transform:translate(-50%, -50%);
+   background-color:rgba(0, 0, 0, 0.8); z-index:11; width:100vw; height:100vh;
+   display:block;">
+   <div id="inviteFriendBox" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
+      background-color:darkcyan; z-index:11; width:90vw; height:70vh;">
+      <button style="z-index:9; position:absolute; top:0; right:0.2rem;" type="button"
+         onclick="controlFriendTab();">
+         <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
+      </button>
+      <div style="margin:0.2rem; color:white; font-weight:bold; font-size:1.3rem;">
+         친구초대
+      </div>
+      <input id="inviteFriendSearch" style="width:90%; margin:5%; font-size:1.3rem;" placeholder="검색">
+      <div id="inviteFriendList" style="width:90%; margin:5%;">
+      
       </div>
    </div>
 </div>

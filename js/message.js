@@ -81,7 +81,7 @@ function send(fromId, toId) {
    location.href = `./msgsend.html?fromId=${fromId}&toId=${toId}`;
 }
 function delMsg(id) {
-   confirm("삭제하시겠습니까?");
+   if (!confirm("삭제하시겠습니까?")) return;
    $.ajax({
       url:`${path}/messages/${id}`,
       type:"DELETE",
