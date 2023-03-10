@@ -11,7 +11,6 @@ function join(id) {
    function addload() { page++; load(); }
 
    function load() {
-      page = 0;
       $.ajax({
          url:`${path}/appoints/list/${localStorage.getItem("sks_id")}/${page}`,
          type:"GET",
@@ -89,9 +88,8 @@ function join(id) {
          return ((y < (viewportHeight + scrolltop)));
    }
    function func() {
-      if (checkVisible('#loading')) load();
+      if (checkVisible('#loading')) addload();
    }
    // 스크롤 이벤트 등록
    window.addEventListener('scroll', func);
 })(jQuery);
-

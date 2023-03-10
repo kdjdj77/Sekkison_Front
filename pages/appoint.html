@@ -14,7 +14,7 @@
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
    <script src="../js/vars.js"></script>
    <style>
-      .hide { bottom:-80vh; }
+      .hide { bottom:-75vh; }
       .vis { bottom: 0; }
    </style>
 </head>
@@ -62,25 +62,30 @@
    background-color:rgba(0, 0, 0, 0.8); z-index:11; width:100vw; height:100vh;
    display:none;">
    <div id="inviteFriendBox" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
-      background-color:darkcyan; z-index:11; width:90vw; height:70vh;">
+      background-color:darkcyan; z-index:11; width:90vw; height:70vh; overflow:hidden;">
       <button style="z-index:9; position:absolute; top:0; right:0.2rem;" type="button"
          onclick="controlFriendTab();">
          <i style="font-size:2rem; color:crimson;" class="fa fa-times"></i>
       </button>
-      <div style="margin:0.2rem; color:white; font-weight:bold; font-size:1.3rem;">
-         친구초대
+      <div id="inviteSearchForm" style="width:100%;">
+         <div style="margin:0.2rem; color:white; font-weight:bold; font-size:1.3rem;">
+            친구초대
+         </div>
+         <input id="inviteFriendSearch" style="width:90%; margin:5%; font-size:1.3rem;" placeholder="검색">
       </div>
-      <input id="inviteFriendSearch" style="width:90%; margin:5%; font-size:1.3rem;" placeholder="검색">
-      <div id="inviteFriendList" style="width:90%; margin:5%; display:flex; flex-wrap:wrap;">
-      
+      <div id="inviteFriendsBox" style="overflow:scroll;">
+         <div id="inviteFriendList" style="width:90%; margin:5%;
+            display:flex; flex-wrap:wrap;">
+         
+         </div>
       </div>
    </div>
 </div>
 <div id="mapBox" class="box3 hide" style="position:fixed; width:100vw;
    padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content: center;">
-   <button id="mapBtn" type="button" style="width:50%; height:5vh;background-color:white;
+   <button id="mapBtn" type="button" style="width:50%; height:5vh; background-color:white;
       border:2px solid gray; border-radius:10px 10px 0 0;"><i class="fa fa-angle-up fa-2x"></i></button>
-   <div id="map" style="width:100%; height:80vh; border: 1px solid black;"></div>
+   <div id="map" style="width:100%; height:75vh; border: 1px solid black;"></div>
    <div style="width:100%; height:50px;"></div>
 </div>
 </body>
@@ -104,5 +109,14 @@
          position: new kakao.maps.LatLng(posX, posY) 
       });
    }
+</script>
+<script>
+window.onresize = searchFriendSize;
+
+function searchFriendSize() {
+   let body2 = document.body.clientHeight * 0.7;
+   let header2 = document.getElementById('inviteSearchForm').clientHeight;
+   document.getElementById('inviteFriendsBox').style.height = `${body2 - header2}px`;
+}
 </script>
 </html>

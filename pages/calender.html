@@ -8,15 +8,221 @@
    <link rel="stylesheet" href="../css/basic.css"/>
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
    <script src="../js/vars.js"></script>
+   <style>
+      table {
+         width: 100%;
+      }
+      .ttd {
+         width: 14.28%;
+         position: relative;
+      }
+      .ttd:after {
+         content: '';
+         display: block;
+         margin-top: 100%;
+      }
+      .head {
+         padding:0.2rem;
+         color:white;
+         font-weight:bold;
+         background-color: orange;
+      }
+      .ttd .cell {
+         cursor:pointer;
+         overflow:hidden;
+         font-size:0.7rem;
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background: bisque;
+      }
+      .ttd .cell:hover {
+         outline:2px solid lightsalmon;
+      }
+      .today {
+         border:2px solid darkgoldenrod;
+      }
+      .sm { font-size:0.2rem; margin:0.05rem; padding:0.05rem;}
+      .co0 { background-color: darkred; color:white; }
+      .co1 { background-color: darkslateblue; color:white; }
+      .co2 { background-color: darkgreen; color:white; }
+      .co3 {background-color:darkviolet; color:white;}
+   </style>
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
    <div class="limiter">
 		<div class="container">
 			<div class="wrap">
-            
+            <div style="width:100%; text-align:center; margin-bottom:1rem;">
+               <button type="button" style="width:2rem; height:2rem; float:left; vertical-align:middle; margin-left:1rem;" onclick="minusYear()">
+                  <i class="fa fa-angle-double-left fa-2x"></i>
+               </button>
+               <button type="button" style="width:2rem; height:2rem; vertical-align:middle; margin-right:1rem;" onclick="minusMonth()">
+                  <i class="fa fa-angle-left fa-2x"></i>
+               </button>
+               <span style="font-size:1.2rem; font-weight:bold;" id="YM"></span>
+               <button type="button" style="width:2rem; height:2rem; vertical-align:middle; margin-left:1rem;" onclick="plusMonth()">
+                  <i class="fa fa-angle-right fa-2x"></i>
+               </button>
+               <button type="button" style="width:2rem; height:2rem; float:right; vertical-align:middle; margin-right:1rem;" onclick="plusYear()">
+                  <i class="fa fa-angle-double-right fa-2x"></i>
+               </button>
+            </div>
+            <table>
+               <tr id="trHead"></tr>
+               <tr id="tr0"></tr>
+               <tr id="tr1"></tr>
+               <tr id="tr2"></tr>
+               <tr id="tr3"></tr>
+               <tr id="tr4"></tr>
+               <tr id="tr5"></tr>
+               <tr id="tr6"></tr>
+            </table>
+            <div id="appointList">
+               
+            </div>
          </div>
       </div>
    </div>
 </body>
+<script>
+   let today = new Date();
+   let year = today.getFullYear();
+   let month = today.getMonth() + 1;
+   let calenderData;
+   const todayArr = [year, month, today.getDate()];
+   const days = ["일", "월", "화", "수", "목", "금", "토"];
+   for(let i = 0; i < 7; i++) $("#trHead").append(
+      `<td>
+         <div class="head" style="display : flex; justify-content : center;
+            align-items : center;">
+            ${days[i]}
+         </div>
+      </td>`);
+
+   getAppoints(year, month);
+   function getAppoints(y, m) {
+      $.ajax({ 
+         url:`${path}/appoints/calender/${localStorage.getItem("sks_id")}/${y}/${m}`,
+         type:"GET",
+         cache:false,
+         success : function(data) {
+            if (data.success) {
+               calenderData = data.data;
+               setAppoints(data.data, y, m);
+            }
+            else console.log(data.msg);
+         }
+      });
+   }
+
+   // 달력 세팅
+   function setAppoints(data, y, m) {
+      $("#YM").html(`${y}년 ${m}월`)
+      let start = new Date(y, m-1, 1).getDay();
+      let monthDays = new Date(y, m, 0).getDate();
+
+      const out = [];
+      let date = 0;
+      for(let i = 0; i <= 42; i++) {
+         if (i % 7 == 0) { $(`#tr${i/7}`).html(out); out.length = 0; }
+
+         if (date >= monthDays || i < start) out.push(`<td></td>`);
+         else {
+            date++;
+            let apps = data[date];
+            let text = '';
+            text += `<td class="ttd">
+               <div class="${y == todayArr[0] && m == todayArr[1] && date == todayArr[2] ?
+                  "today" : ""} cell" onclick="showData(${y}, ${m}, ${date})">
+                  <div class="sm">${date}</div>`;;
+            if (apps.length != 0) {
+               for(let a = 0; a < apps.length; a++) {
+                  text += `<div class="sm co${a}" style="white-space: nowrap;">
+                     ${apps[a].title}</div>`;
+               }
+            }
+            text += `</div></tr>`;
+            out.push(text);
+         }
+      }
+   }
+   function plusMonth() {
+      if (++month > 12) { year++; month -= 12; }
+      getAppoints(year, month);
+   }
+   function minusMonth() {
+      if (--month < 1) { year--; month += 12; }
+      getAppoints(year, month);
+   }
+   function plusYear() {
+      getAppoints(++year, month);
+   }
+   function minusYear() {
+      if (--year < 1) return;
+      getAppoints(year, month);
+   }
+   function showData(y, m, d) {
+      const apps = calenderData[d];
+      const out = [];
+      out.push(`
+         <br><div style="width:100%; text-align:center; font-weight:bold;">
+            ${y}년${m}월${d}일 (${days[new Date(y, m-1, d).getDay()]})
+         </div><br>`);
+      for(let i = 0; i < apps.length; i++) {
+         const appoint = apps[i];
+         let id = appoint.id;
+         let title = t(appoint.title);
+         let time = appoint.dday.split(" ")[1].substring(0,5);
+         let dday = Math.floor((new Date(appoint.dday) - new Date()) / (1000*60*60*24));
+         let head = appoint.headCnt;
+         let max = appoint.maxCnt;
+         let isPublic = appoint.isPublic == true ? "공개" : "비공개";
+         let isRecruit = appoint.isRecruit == true ? "모집중" : "모집완료";
+         let address = (appoint.type != "FTF" ? "" : `${appoint.address == null ? "" : appoint.address}`);
+         
+         let appointType = " ";
+         if (appoint.type == "FTF") appointType = "만남";
+         else if (appoint.type == "NFTF") appointType = "온라인";
+         else appointType = "나만의";
+         let row = `
+            <div style="width:100%; border-top:1px solid gray; border-right:0px; padding:0;
+               display:flex; flex-wrap:wrap; margin-bottom:2px;">
+               <div style="width:85%; margin-left:2%;">
+                  <div style="width:100%; display:flex; flex-wrap:wrap; flex-direction:row;">
+                     <div style="font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
+                        white-space: nowrap; cursor:pointer; padding:0;">
+                        <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
+                           padding:0 .2rem 0 .2rem; margin:0;">${appointType}</span>
+                        <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
+                           padding:0 .2rem 0 .2rem; margin:0;">${isRecruit}</span>
+                        <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
+                           padding:0 .2rem 0 .2rem; margin:0;">${isPublic}</span><br>
+                        <span ${appoint.isPublic ? `onclick="join(${id});"` : ""}>${title}</span><br>
+                        <span style="font-size:0.5rem; font-weight:normal;">${address}</span>
+                     </div>
+                     <div style="flex:1; float:right; text-align:right; padding-right:0.2rem;">
+                        <div style="font-weight:bold; padding-bottom:0.1rem;">${dday < 0 ? "종료" : `D-${dday}`}</div>
+                        <div style="padding-bottom:0.1rem;">${time}</div>
+                        <span style="font-size:0.7rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
+                     </div>
+                  </div>
+               </div>
+               <button type="button" id="join" onclick="join(${id});"
+                  style="margin:0; width:13%; height:4rem; font-size:1.2rem;
+                  color:green;">
+                  <i class="fa fa-sign-in"></i>
+               </button>
+            </div>`;
+         out.push(row);
+      }
+      $("#appointList").html(out);
+   }
+   function join(id) {
+      location.href = `../pages/appoint.html?id=${id}`;
+   }
+</script>
 </html>
