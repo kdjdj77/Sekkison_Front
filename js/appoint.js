@@ -18,6 +18,8 @@ let Request = function() {
 var request = new Request(); 
 let appointId = request.getParameter("id");
 
+keyupInviteSearch();
+
 (function ($) {
    "use strict";
    //[search]
@@ -34,7 +36,7 @@ let appointId = request.getParameter("id");
    });
    function load() {
       $.ajax({
-         url:path + `/appoints/${appointId}`,
+         url:`${path}/appoints/${localStorage.getItem("sks_id")}/${appointId}`,
          type:"GET",
          cache:false,
          success : function(data){
@@ -51,7 +53,10 @@ let appointId = request.getParameter("id");
                   `);
                }
                set(data.data);
-            } else console.log(data.msg);
+            } else {
+               alert(data.msg);
+               location.href = "../pages/home.html";
+            }
          }
       });
    }
@@ -76,7 +81,7 @@ let appointId = request.getParameter("id");
       $("#content").html(t(data.content));
       $("#headCnt").html(data.headCnt);
       $("#maxCnt").html(data.maxCnt);
-      $("#dDay").html("약속날짜 : " + data.dday.substring(0, data.dday.length-3));
+      $("#dDay").html("D-day : " + data.dday.substring(0, data.dday.length-3));
       let dd = Math.floor((new Date(data.dday) - new Date()) / (1000*60*60*24));
       $('#D-d').html(`${dd < 0 ? "종료" : `D-${dd}`}`);
       $("#isPublic").html(data.isPublic ? "공개" : "비공개");
@@ -203,22 +208,64 @@ function controlFriendTab() {
 function keyupInviteSearch() {
    let text = $("#inviteFriendSearch").val();
    let box = $("#inviteFriendList");
-   console.log(text);
 
-   var regExp = /^[가-힣]{1,8}$/;
-   if (text.trim() == "") { box.html(""); return; }
+   var regExp = /^[가-힣]{0,8}$/;
    if (!regExp.test(text)) { box.html(""); return; }
-   return;
+
    $.ajax({
-      url:`${path}/users/search/${localStorage.getItem("sks_id")}?str=${$("#friendInput").val()}`,
+      url:`${path}/users/search/invite/${localStorage.getItem("sks_id")}/${appointId}?str=${text}`,
       type:"GET",
       cache:false,
       success : function(data){
          if (data.success) {
-               setSearch(data.data);
+               setInviteFriends(data.data);
          } else {
                console.log(data.msg);
          }
       }
    });
+}
+function setInviteFriends(result) {
+   const out = [];
+   result.forEach(data => {
+      const row = `
+         <span style="margin:0.1%; background-color:#FBF5EF; color:black;
+            padding:0.2rem; border:2px solid #F6E3CE; border-radius:5px">
+            <a style="text-decoration:none; color:black;"
+               href="./otherinfo.html?userId=${data.id}">
+               <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                  src="${path}/userFiles/${data.id}">
+               ${data.name}
+            </a>
+            ${setInviteFriendBtn(data)}
+         </span>
+      `;
+      out.push(row);
+   });
+   $("#inviteFriendList").html(out.join("\n"));
+}
+function setInviteFriendBtn(data) {
+   if (data.memo == "X") {
+      return `
+         <button style="font-size:1.3rem; color:green; margin-right:10px; vertical-align:middle;"
+            onclick="inviteSend(${data.id}, this)">
+            <i class='fa fa-plus'></i>
+         </button>`
+   } else if (data.memo == "O") {
+      return `<span style="font-size:0.7rem; color:gray; margin-right:10px;">참가중</span>`;
+   } else {
+      return `<span style="font-size:0.7rem; color:gray; margin-right:10px;">초대중</span>`
+   }
+}
+function inviteSend(toId) {
+   let fromId = localStorage.getItem("sks_id");
+   $.ajax({
+      url:`${path}/invites/${appointId}/${fromId}/${toId}`,
+      type:"POST",
+      cache:false,
+      success : function(data){
+         if (data.success) keyupInviteSearch();
+         else console.log(data.msg);
+      }
+   })
 }

@@ -45,7 +45,7 @@ function join(id) {
          let masterName = appoint.memo;
 
          const row = `
-            <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${date}</div>
+            <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">D-day : ${date}</div>
             <div style="width:100%; border-radius:5px; border:1px solid gray; border-right:0px; padding:0;
                display:flex; flex-wrap:wrap; margin-bottom:2px;">
                <div style="width:85%; margin-left:2%;">

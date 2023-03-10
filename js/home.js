@@ -69,14 +69,14 @@ function join(id) {
                <div style="width:85%; margin-left:2%;">
                   <div style="width:100%; display:flex; flex-wrap:wrap; flex-direction:row;">
                      <div style="font-weight:bold; font-size:1rem; overflow: hidden; text-overflow: ellipsis;
-                        white-space: nowrap; cursor:pointer; padding:0;" onclick="join(${id});">
+                        white-space: nowrap; cursor:pointer; padding:0;">
                         <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
                            padding:0 .2rem 0 .2rem; margin:0;">${appointType}</span>
                         <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
                            padding:0 .2rem 0 .2rem; margin:0;">${isRecruit}</span>
                         <span style="font-weight:normal; font-size:.3rem; border:1px solid gray; border-radius:5px;
                            padding:0 .2rem 0 .2rem; margin:0;">${isPublic}</span><br>
-                        ${title}<br>
+                        <span ${appoint.isPublic ? `onclick="join(${id});"` : ""}>${title}</span><br>
                         <span style="font-size:0.5rem; font-weight:normal;">${address}</span>
                      </div>
                      <div style="flex:1; float:right; text-align:right; padding-right:0.2rem;">
