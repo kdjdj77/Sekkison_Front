@@ -144,3 +144,27 @@ function friendSend(toId, obj) {
    xmlhttp.open("POST", `${path}/friends?fromId=${fromId}&toId=${toId}`, true);
    xmlhttp.send();
 }
+$.ajax({
+   url:`${path}/users/alarm/${localStorage.getItem("sks_id")}/0`,
+   type:"GET",
+   cache:false,
+   success : function(data){
+      if (data.success) {
+         console.log("쪽지개수 받기 성공");
+         $("#messageCnt").addClass("redbg");
+         $("#messageCnt").html(data.data);
+      } else console.log(data.msg);
+   }
+});
+$.ajax({
+   url:`${path}/users/alarm/${localStorage.getItem("sks_id")}/1`,
+   type:"GET",
+   cache:false,
+   success : function(data){
+      if (data.success) {
+         console.log("초대개수 받기 성공");
+         $("#inviteCnt").addClass("redbg");
+         $("#inviteCnt").html(data.data);
+      } else console.log(data.msg);
+   }
+});
