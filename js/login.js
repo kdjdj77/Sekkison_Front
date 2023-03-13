@@ -53,7 +53,6 @@
     $("#submitBtn").click(defaultLogin);
     $("#googleBtn").click(googleLogin);
     $("#kakaoBtn").click(kakaoLogin);
-    $("#naverBtn").click(naverLogin);
     $("#PW").on('keyup', function() {
         if(window.event.keyCode==13) defaultLogin();
     })
@@ -117,24 +116,25 @@
         })
     }
     // 네이버 로그인
-    naverLogin.getLoginStatus(function (status) {
-        if (status) {
-            const token = naverLogin.user.id;
-            apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
-        } else console.log("callback 처리에 실패하였습니다.");
+    let naverLogin = new naver.LoginWithNaverId(
+        {
+            clientId: "2MC6zwLDyYzFqjXZtAF3",
+            callbackUrl: "https://kdjdj77.github.io/Sekkison_Front/pages/home.html",
+            isPopup: false,
+            callbackHandle: true
+        }
+    );
+    naverLogin.init();
+    window.addEventListener('load', function () {
+        naverLogin.getLoginStatus(function (status) {
+            if (status) {
+                const token = naverLogin.user.id;
+                apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
+            } else console.log("callback 처리에 실패하였습니다.");
+        });
     });
-    function naverLogin() {
-        let naverLogin = new naver.LoginWithNaverId(
-            {
-                clientId: "2MC6zwLDyYzFqjXZtAF3",
-                callbackUrl: "https://kdjdj77.github.io/Sekkison_Front/pages/home.html",
-                isPopup: false,
-                callbackHandle: true
-            }
-        );
-        naverLogin.init();
-    }
 
+    // api 로그인 진행
     function apiLogin(id, pw, type) {
         $.ajax({
 			url:`${path}/users/find?username=${id}`,
