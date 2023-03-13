@@ -168,3 +168,9 @@ $.ajax({
       } else console.log(data.msg);
    }
 });
+if (navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(`X : ${position.coords.latitude}`);
+      console.log(`Y : ${position.coords.longitude}`);
+   });
+} else console.log("위치를 받지 못했습니다");
