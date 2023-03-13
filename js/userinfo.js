@@ -109,7 +109,7 @@ let isValidName = false;
       });
    }
    function setUserInfo(user) {
-      let username = user.username;
+      let username = (user.api == null) ? user.username : `${user.api} 계정`;
       let name = user.name;
       let gender = user.gender == 'M' ? "남" : "여";
       let phone = user.phone;
