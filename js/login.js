@@ -130,7 +130,8 @@
             if (status) {
                 const token = naverLogin.user.id;
                 apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
-            } else console.log("callback 처리에 실패하였습니다.");
+            } 
+            //else console.log("callback 처리에 실패하였습니다.");
         });
     });
 
