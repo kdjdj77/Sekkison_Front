@@ -169,8 +169,18 @@ $.ajax({
    }
 });
 if (navigator.geolocation) {
-   navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(`X : ${position.coords.latitude}`);
-      console.log(`Y : ${position.coords.longitude}`);
-   });
+   navigator.geolocation.getCurrentPosition(
+      function(position) {
+         console.log(`X : ${position.coords.latitude}`);
+         console.log(`Y : ${position.coords.longitude}`);
+      },
+      function(error) {
+         console.log(`Error Code: ${error.code}, Error Description: ${error.message}`);
+      },
+      {
+         enableHighAccuracy	: true,
+         maximumAge		: 0,
+         timeout			: 3000
+      }
+   );
 } else console.log("위치를 받지 못했습니다");
