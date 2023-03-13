@@ -10,18 +10,20 @@ function join(id) {
    $("#search").on("propertychange change keyup paste input",newload);
    $("#ispublic").change(newload);
    $("#isrecruit").change(newload);
+   $("#isFTF").change(newload);
    function newload() { page = 0; load(); }
    function addload() { page++; load(); }
 
    function load() {
       let ispublic = $("#ispublic").val();
       let isrecruit = $("#isrecruit").val();
+      let isFTF = $("#isFTF").val();
       let search = $("#search").val();
       if (search == null) search = "";
 
       const data = { "search":search }
       $.ajax({
-         url:path + `/appoints/search/${ispublic}/${isrecruit}/${page}`,
+         url:path + `/appoints/search/${ispublic}/${isrecruit}/${isFTF}/${page}`,
          type:"GET",
          data:data,
          cache:false,

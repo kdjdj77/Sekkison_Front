@@ -50,15 +50,29 @@
         }
     });
     //[login]
-    $("#submitBtn").click(login);
+    $("#submitBtn").click(defaultLogin);
+    $("#googleBtn").click(googleLogin);
+    $("#kakaoBtn").click(kakaoLogin);
+    $("#naverBtn").click(naverLogin);
     $("#PW").on('keyup', function() {
         if(window.event.keyCode==13) login();
     })
 
-    function login(){
+    function defaultLogin() {
         let id = $("#ID").val();
         let pw = $("#PW").val();
-
+        login(id, pw);
+    }
+    function googleLogin() {
+        login(id, pw);
+    }
+    function kakaoLogin() {
+        login(id, pw);
+    }
+    function naverLogin() {
+        login(id, pw);
+    }
+    function login(id, pw){
 		let data = {
 			"username":id,
 			"password":pw
