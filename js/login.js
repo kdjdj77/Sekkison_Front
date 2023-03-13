@@ -119,7 +119,7 @@
     let naverLogin = new naver.LoginWithNaverId(
         {
             clientId: "2MC6zwLDyYzFqjXZtAF3",
-            callbackUrl: "https://kdjdj77.github.io/Sekkison_Front/pages/apiregister.html",
+            callbackUrl: "https://kdjdj77.github.io/Sekkison_Front/index.html",
             isPopup: false,
             callbackHandle: true
         }
