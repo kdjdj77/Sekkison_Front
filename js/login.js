@@ -90,7 +90,7 @@
     function googleLogin() {
         google.accounts.id.initialize({
             client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
-            callback: function() {
+            callback: function(response) {
                 const token = jwt_decode(response.credential).sub;
                 apiLogin(`google_${token}`, `google_pw_${token}`, 0);
             }
@@ -141,7 +141,6 @@
         $.ajax({
 			url:`${path}/users/find?username=${id}`,
 			type:"GET",
-			data:data,
 			cache:false,
 			success : function(data){
                 if (data.success) {
