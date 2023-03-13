@@ -1,98 +1,28 @@
-(function ($) {
+// request 세팅
+let Request = function() {  
+   this.getParameter = function(name) {  
+       var rtnval = '';  
+       var nowAddress = unescape(location.href);  
+       var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+               nowAddress.length)).split('&');  
+       for (var i = 0; i < parameters.length; i++) {  
+           var varName = parameters[i].split('=')[0];  
+           if (varName.toUpperCase() == name.toUpperCase()) {  
+               rtnval = parameters[i].split('=')[1];  
+               break;  
+           }  
+       }  
+       return rtnval;  
+   }  
+}
+var request = new Request(); 
+let apiType = request.getParameter("api");
+
+(function($) {
    "use strict";
-   let isValidUsername = false;
-   let isValidPassword = false;
    let isValidName = false;
    let isValidPhone = false;
    let checkNum = false;
-
-   //[ Show pass ]*/
-   let showPass = 0;
-   $('.btn-show-pass').on('click', function(){
-      if(showPass == 0) {
-         $("#password").attr('type','text');
-         $(this).find('i').removeClass('zmdi-eye');
-         $(this).find('i').addClass('zmdi-eye-off');
-         showPass = 1;
-      }
-      else {
-         $("#password").attr('type','password');
-         $(this).find('i').addClass('zmdi-eye');
-         $(this).find('i').removeClass('zmdi-eye-off');
-         showPass = 0;
-      }
-   });
-   //[ Dup pass ]*/
-   $("input[name='re-password']").on("propertychange change keyup paste input", function(){
-      let pass1 = $("input[name='password']").val();
-      let pass2 = $("input[name='re-password']").val();
-
-      var regExp = /^[a-zA-Z\d`~!@#$%^&*()-_=+]{8,16}$/;
-      if (!regExp.test(pass1)) {
-         $("#dup-password").text("비밀번호는 8~16자입니다").css("color", "red");
-         isValidPassword = false;
-         return;
-      }
-
-      if (pass1 == pass2) {
-         $("#dup-password").text("  비밀번호와 일치합니다");
-         $("#dup-password").css("color", "green");
-         isValidPassword = true;
-      }
-      else {
-         $("#dup-password").text("  비밀번호와 다릅니다");
-         $("#dup-password").css("color", "red");
-         isValidPassword = false;
-      }
-   })
-   $("input[name='password']").on("propertychange change keyup paste input", function(){
-      let pass1 = $("input[name='password']").val();
-      let pass2 = $("input[name='re-password']").val();
-
-      var regExp = /^[a-zA-Z\d`~!@#$%^&*()-_=+]{8,16}$/;
-      if (!regExp.test(pass1)) {
-         $("#dup-password").text("비밀번호는 8~16자입니다").css("color", "red");
-         isValidPassword = false;
-         return;
-      }
-
-      if (pass1 == pass2) {
-         $("#dup-password").text("  비밀번호와 일치합니다");
-         $("#dup-password").css("color", "green");
-         isValidPassword = true;
-      }
-      else {
-         $("#dup-password").text("  비밀번호와 다릅니다");
-         $("#dup-password").css("color", "red");
-         isValidPassword = false;
-      }
-   })
-   //[ Dup username ]*/
-   $("input[name='username']").on("propertychange change keyup paste input", function(){
-      let str = $("input[name='username']").val();
-
-      var regExp = /^[0-9a-zA-Z]{4,10}$/;
-      if (!regExp.test(str)) {
-         $("#dup-username").text("아이디는 영문+숫자 4~10자입니다").css("color", "red");
-         isValidUsername = false;
-         return;
-      }
-
-      $.ajax({
-         url:`${path}/users/duplicated/0?str=${str}`,
-         type:"GET",
-         cache:false,
-         success : function(data){
-            if (data.success) {
-               $("#dup-username").text("사용 가능한 아이디입니다").css("color", "green");
-               isValidUsername = true;
-            } else {
-               $("#dup-username").text(data.msg).css("color", "red");
-               isValidUsername = false;
-            }
-         }
-      });
-   })
    //[ Dup name ]*/
    $("input[name='name']").on("propertychange change keyup paste input", function(){
       let str = $("input[name='name']").val();
@@ -196,16 +126,13 @@
    });
    //[ 회원가입 완료 ]*/
    $("#submitBtn").click(function() {
-      if (!isValidUsername) {alert("아이디를 확인해주세요");return;}
-      if (!isValidPassword) {alert("비밀번호를 확인해주세요");return;}
-      if ($("input[name='password']").val() != $("input[name='re-password']").val()) {alert("비밀번호 확인란이 틀립니다");return;}
       if (!isValidName) {alert("별명을 확인해주세요");return;}
       if (!isValidPhone) {alert("전화번호를 확인해주세요");return;}
       if (!checkNum) {alert("인증번호를 확인해주세요");return;}
       console.log($("input[name='gender']").val());
 
-      let username = $("#username").val();
-      let password = $("#password").val();
+      let username = localStorage.getItem("sks_username");
+      let password = localStorage.getItem("sks_password");
       let name = $("#name").val();
       let phone = $("#phone").val();
       let gender = $("input[name='gender']:checked").val();
@@ -220,17 +147,18 @@
 		};
 		
 		$.ajax({
-			url:`${path}/users`,
+			url:`${path}/users/apiRegister/${apiType}`,
 			type:"POST",
 			data:data,
 			cache:false,
 			success : function(data){
             if (data.success) {
-               alert("회원가입 성공");
-               location.href="../index.html";
-            } else {
-               alert(data.msg);
-            }
+               localStorage.setItem("sks_id", data.data.id);
+               localStorage.setItem('sks_username', data.data.username);
+               localStorage.setItem('sks_password', data.data.password);
+               localStorage.setItem("sks_name", data.data.name);
+               location.href="../pages/home.html";
+            } else alert(data.msg);
          }
       });
    })

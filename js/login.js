@@ -61,21 +61,7 @@
     function defaultLogin() {
         let id = $("#ID").val();
         let pw = $("#PW").val();
-        login(id, pw);
-    }
-    function googleLogin() {
-        let appkey = "AIzaSyCDHh1kHgvFdX5vIqpmsxOOd2gaYi7taZg";
-        onSignIn();
-        //login(id, pw);
-    }
-    function kakaoLogin() {
-        login(id, pw);
-    }
-    function naverLogin() {
-        login(id, pw);
-    }
-    function login(id, pw){
-		let data = {
+        let data = {
 			"username":id,
 			"password":pw
 		};
@@ -99,19 +85,78 @@
                 }
             }
 		});
-	};
-})(jQuery);
+    }
+    // 구글 로그인
+    function googleLogin() {
+        google.accounts.id.initialize({
+            client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
+            callback: function() {
+                const token = jwt_decode(response.credential).sub;
+                apiLogin(`google_${token}`, `google_pw_${token}`, 0);
+            }
+        });
+        google.accounts.id.prompt();
+    }
+    // 카카오 로그인
+    function kakaoLogin() {
+        Kakao.init('cab7544176ea7c6e5560a224d2808d78');
+        Kakao.Auth.login({
+            success: function () {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (response) {
+                        const token = response.id;
+                        apiLogin(`kakao_${token}`, `kakao_pw_${token}`, 1);
+                    },
+                    fail: function (error) { console.log(error) },
+                })
+            },
+            fail: function (error) {
+                console.log(error)
+            },
+        })
+    }
+    // 네이버 로그인
+    function naverLogin() {
+        let naverLogin = new naver.LoginWithNaverId(
+            {
+                clientId: "2MC6zwLDyYzFqjXZtAF3",
+                callbackUrl: "https://kdjdj77.github.io/Sekkison_Front/pages/home.html",
+                isPopup: false,
+                callbackHandle: true
+            }
+        );
+        naverLogin.init();
+        window.addEventListener('load', function () {
+            naverLogin.getLoginStatus(function (status) {
+                if (status) {
+                    const token = naverLogin.user.id;
+                    apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
+                } else console.log("callback 처리에 실패하였습니다.");
+            });
+        });
+    }
 
-// 구글 로그인
-function onSignIn() {
-    google.accounts.id.initialize({
-        client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-    google.accounts.id.prompt();
-}
-function handleCredentialResponse(response) {
-    var profile = jwt_decode(response.credential);
-	
-    console.log(profile);
-}
+    function apiLogin(id, pw, type) {
+        $.ajax({
+			url:`${path}/users/find?username=${id}`,
+			type:"GET",
+			data:data,
+			cache:false,
+			success : function(data){
+                if (data.success) {
+                    console.log("로그인 성공");
+                    localStorage.setItem('sks_id', data.data.id);
+                    localStorage.setItem('sks_username', data.data.username);
+                    localStorage.setItem('sks_password', data.data.password);
+                    localStorage.setItem('sks_name', data.data.name);
+                    location.href="../pages/home.html";
+                } else {
+                    localStorage.setItem('sks_username', id);
+                    localStorage.setItem('sks_password', pw);
+                    location.href(`../pages/apiregister.html?api=${type}`);
+                }
+            }
+		});
+    }
+})(jQuery);
