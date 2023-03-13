@@ -125,11 +125,13 @@
         }
     );
     naverLogin.init();
-    naverLogin.getLoginStatus(function (status) {
-        if (status) {
-            const token = naverLogin.user.id;
-            apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
-        } else console.log("callback 처리에 실패하였습니다.");
+    window.addEventListener('load', function () {
+        naverLogin.getLoginStatus(function (status) {
+            if (status) {
+                const token = naverLogin.user.id;
+                apiLogin(`naver_${token}`, `naver_pw_${token}`, 2);
+            } else console.log("callback 처리에 실패하였습니다.");
+        });
     });
 
     // api 로그인 진행
