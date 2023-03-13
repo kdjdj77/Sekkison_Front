@@ -153,7 +153,7 @@
                 } else {
                     localStorage.setItem('sks_username', id);
                     localStorage.setItem('sks_password', pw);
-                    location.href(`../pages/apiregister.html?api=${type}`);
+                    location.href = `../pages/apiregister.html?api=${type}`;
                 }
             }
 		});
