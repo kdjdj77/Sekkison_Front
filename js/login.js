@@ -55,7 +55,7 @@
     $("#kakaoBtn").click(kakaoLogin);
     $("#naverBtn").click(naverLogin);
     $("#PW").on('keyup', function() {
-        if(window.event.keyCode==13) login();
+        if(window.event.keyCode==13) defaultLogin();
     })
 
     function defaultLogin() {
@@ -64,7 +64,9 @@
         login(id, pw);
     }
     function googleLogin() {
-        login(id, pw);
+        let appkey = "AIzaSyCDHh1kHgvFdX5vIqpmsxOOd2gaYi7taZg";
+        onSignIn();
+        //login(id, pw);
     }
     function kakaoLogin() {
         login(id, pw);
@@ -99,3 +101,17 @@
 		});
 	};
 })(jQuery);
+
+// 구글 로그인
+function onSignIn() {
+    google.accounts.id.initialize({
+        client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt();
+}
+function handleCredentialResponse(response) {
+    var profile = jwt_decode(response.credential);
+	
+    console.log(profile);
+}
