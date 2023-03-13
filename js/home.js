@@ -79,15 +79,18 @@ function join(id) {
                         <span ${appoint.isPublic ? `onclick="join(${id});"` : ""}>${title}</span><br>
                         <span style="font-size:0.5rem; font-weight:normal;">${address}</span>
                      </div>
-                     <div style="flex:1; float:right; text-align:right; padding-right:0.2rem;">
-                        <div style="padding:.1rem .1rem 0 0; cursor:pointer;" onclick="goInfo(${masterId});">
+                     <div style="height:5rem; flex:1; float:right; text-align:right; padding-right:0.2rem;">
+                        <div style="margin-top:1%; height:33%; cursor:pointer; font-size:0.8rem;"
+                           onclick="goInfo(${masterId});">
                            ${masterId==0 ? "" :
-                              `<img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
+                              `<img style="width:20px; height:20px; border-radius:50%; vertical-align: middle;"
                                  src="${path}/userFiles/${masterId}">`}
                            ${masterName}
                         </div>
-                        <div style="font-weight:bold; padding-bottom:0.1rem;">${dday < 0 ? "종료" : `D-${dday}`}</div>
-                        <span><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
+                        <div style="height:33%; font-weight:bold; padding-bottom:0.1rem;">
+                           ${dday < 0 ? "종료" : `D-${dday}`}
+                        </div>
+                        <span style="height:33%; font-size:0.8rem;"><i class="fa fa-user"></i>&nbsp;${head}/${max}</span>
                      </div>
                   </div>
                </div>
