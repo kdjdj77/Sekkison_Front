@@ -149,11 +149,11 @@
                     localStorage.setItem('sks_username', data.data.username);
                     localStorage.setItem('sks_password', data.data.password);
                     localStorage.setItem('sks_name', data.data.name);
-                    location.href="../pages/home.html";
+                    location.href="./pages/home.html";
                 } else {
                     localStorage.setItem('sks_username', id);
                     localStorage.setItem('sks_password', pw);
-                    location.href = `../pages/apiregister.html?api=${type}`;
+                    location.href = `./pages/apiregister.html?api=${type}`;
                 }
             }
 		});
