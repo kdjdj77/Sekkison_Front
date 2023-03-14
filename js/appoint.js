@@ -19,7 +19,6 @@ var request = new Request();
 let appointId = request.getParameter("id");
 
 keyupInviteSearch();
-
 (function ($) {
    "use strict";
    //[search]
@@ -43,7 +42,7 @@ keyupInviteSearch();
             if (data.success) {
                console.log("약속 데이터 받기 성공");
                console.log(data);
-               loadMembers(data.data.memo, data.data.type);
+               loadMembers(data.data.memo, data.data.type, data.data.posX, data.data.posY);
                if (data.data.memo == localStorage.getItem("sks_name")) {
                   $("#outBtn").html(`
                      <button type="button" onclick="delAppoint(${appointId})" style="color:white;
@@ -60,7 +59,7 @@ keyupInviteSearch();
          }
       });
    }
-   function loadMembers(master, type) {
+   function loadMembers(master, type, x, y) {
       $.ajax({
          url:`${path}/appoints/members/${appointId}`,
          type:"GET",
@@ -69,7 +68,7 @@ keyupInviteSearch();
             if (data.success) {
                console.log("멤버 데이터 받기 성공");
                console.log(data);
-               setMembers(data.data, master, type);
+               setMembers(data.data, master, type, x, y);
             } else console.log(data.msg);
          }
       });
@@ -103,10 +102,12 @@ keyupInviteSearch();
       $("#posY").html(data.posY);
       setKakaoMap(data.posX, data.posY);
    }
-   function setMembers(data, master, type) {
+   function setMembers(data, master, type, x, y) {
       let isIn = false;
       data.forEach(member => {
-         let meter = "...m";
+         let meter = 
+            (member.posX == null || member.posY == null) ?
+            "???" : getDist(x, y, member.posX, member.posY);
          let row = `
             <div style="width:100%; margin:1rem;">
                <a style="float:left; text-decoration:none; color:black; font-size:1rem;"
@@ -269,4 +270,16 @@ function inviteSend(toId) {
          else console.log(data.msg);
       }
    })
+}
+function getDist(lat1,lng1,lat2,lng2) {
+   function deg2rad(deg) { return deg * (Math.PI/180)}
+
+   var R = 6371; // Radius of the earth in km
+   var dLat = deg2rad(lat2-lat1);  // deg2rad below
+   var dLon = deg2rad(lng2-lng1);
+   var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+   var d = R * c; // Distance in km
+   if (d >= 1) return `${Math.round(d*10)/10}km`;
+   return `${Math.round(d * 1000)}m`;
 }

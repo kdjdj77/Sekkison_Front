@@ -228,11 +228,8 @@ function setcoords(record) {
       },
       cache:false,
       success : function(data){
-         if (data.success) {
-            console.log("쪽지개수 받기 성공");
-            $("#messageCnt").addClass("redbg");
-            $("#messageCnt").html(data.data);
-         } else console.log(data.msg);
+         if (data.success) console.log("위치 저장 완료");
+         else console.log(data.msg);
       }
    });
 }
