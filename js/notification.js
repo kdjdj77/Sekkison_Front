@@ -119,8 +119,9 @@ let tag = request.getParameter();
       $("#appointCnt").html(`(${result.length})`);
       const out = [];
       result.forEach(appoint => {
-         let memo = appoint.memo.split('&');
          let id = appoint.id;
+         let memo = appoint.memo.split('&');
+         let invitor = memo[0];
          let inviteId = memo[1];
          let title = appoint.title;
          let content = appoint.content;
@@ -133,7 +134,6 @@ let tag = request.getParameter();
          let dday = "D-"+String(Math.floor((new Date(date) - new Date()) / (1000*60*60*24)));
          let isRecruit = appoint.isRecruit;
          let regDate = appoint.create_at;
-         let invitor = memo[0];
 
          
          const row = `

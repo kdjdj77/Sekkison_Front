@@ -38,13 +38,7 @@
                const row = `
                   <div style="margin-top:5px; text-align:right; font-size:0.5rem; width:100%;">${regDate}</div>
                   <div style="width:100%; height:50px; display:flex; flex-wrap:wrap; padding:0; margin-bottom:0;
-                     border-top:1px solid black; border-bottom:1px solid black; border-radius:5px;">
-                     <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">
-                        <button type="button" style="float:left; margin:0; height:100%; width:100%; border-radius:5px 0px 0px 5px;
-                              color:white; background-color:green" onclick="send(${toId}, ${fromId})">
-                           <i class="fa fa-reply"></i>
-                        </button>
-                     </div>
+                     border-top:1px solid black; border-bottom:1px solid black;">
                      <div style="cursor:pointer; margin:auto; width:40%; overflow: hidden; text-overflow: ellipsis;
                         white-space: nowrap;" onclick="show(${id})">&nbsp;${content}
                      </div>
@@ -54,8 +48,14 @@
                         ${fromName}&nbsp;
                      </div>
                      <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">
-                        <button type="button" style="float:right; margin:0; height:100%; width:100%; border-radius:0px 5px 5px 0px;
-                           color:white; background-color:crimson" onclick="delMsg(${id})">
+                        <button type="button" style="float:left; margin:0; height:100%; width:100%;
+                           color:green; font-size:1.2rem;" onclick="send(${toId}, ${fromId})">
+                           <i class="fa fa-reply"></i>
+                        </button>
+                     </div>
+                     <div style="margin:auto; width:10%; height:100%; padding:0; margin:0;">
+                        <button type="button" style="float:right; margin:0; height:100%; width:100%;
+                           color:crimson; font-size:1.3rem;" onclick="delMsg(${id})">
                            <i class="fa fa-times"></i>
                         </button>
                      </div>
