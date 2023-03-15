@@ -41,14 +41,25 @@
                <a style="text-decoration:none; color:black;" href="./otherinfo.html?userId=${data.id}">
                   <img style="width:25px; height:25px; border-radius:50%; vertical-align: middle;"
                      src="${path}/userFiles/${data.id}">
-                  ${name}
+                  <span id="friendName${data.id}">${name}</span>
                </a>
+               <button style="font-size:1rem; color:black; margin-right:10px; vertical-align:middle;"
+                  onclick="openSetMemo(${data.id});">
+                  <i class="fa fa-file-text-o"></i>
+               </button>
                <button style="float:right; font-size:1.5rem; color:black; margin-right:10px;"
                   onclick="msgSend(${data.id})">
                   <i class="fa fa-envelope-o"></i>
                </button>
-            </div>
-         `;
+               <div id="memoBox${data.id}" style="display:none; width:100%; height:1.3rem; margin-top:0.5rem;">
+                  <input id="friendMemo${data.id}" type="text" style="height:100%; width:60%;" placeholder="메모 입력">
+                  <input id="friendNameHD${data.id}" type="hidden" value="${data.name}">
+                  <button type="button" style="width:20%; height:100%;"
+                     onclick="setMemo(${localStorage.getItem("sks_id")}, ${data.id})">
+                     OK
+                  </button>
+               </div>
+            </div>`;
          out.push(row);
       });
       $("#friendList").html(out.join("\n"));
@@ -232,4 +243,25 @@ function setcoords(record) {
          else console.log(data.msg);
       }
    });
+}
+// 메모 세팅
+function setMemo(fromId, toId) {
+   let memo = $(`#friendMemo${toId}`).val();
+   let name = $(`#friendNameHD${toId}`).val();
+   $.ajax({
+      url:`${path}/friends/memo/${fromId}/${toId}?memo=${memo}`,
+      type:"PUT",
+      cache:false,
+      success : function(data){
+         if (data.success) {
+            console.log("메모 세팅 완료");
+            $(`#friendName${toId}`).html(`${name}(${memo})`);
+            $(`#memoBox${toId}`).toggle();
+         }
+         else console.log(data.msg);
+      }
+   })
+}
+function openSetMemo(id) {
+   $(`#memoBox${id}`).toggle();
 }

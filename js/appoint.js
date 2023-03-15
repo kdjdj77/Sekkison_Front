@@ -17,6 +17,9 @@ let Request = function() {
 }
 var request = new Request(); 
 let appointId = request.getParameter("id");
+let isEnd = false;
+let startDist;
+let endDist;
 
 keyupInviteSearch();
 (function ($) {
@@ -42,8 +45,14 @@ keyupInviteSearch();
             if (data.success) {
                console.log("약속 데이터 받기 성공");
                console.log(data);
+               let appointdday = new Date(data.data.dday);
+               isEnd = appointdday < new Date() ? true : false;
+               endDist = appointdday;
+               appointdday.setMinutes(appointdday.getMinutes() - 30);
+               startDist = appointdday;
+
                loadMembers(data.data.memo, data.data.type, data.data.posX, data.data.posY);
-               if (data.data.memo == localStorage.getItem("sks_name")) {
+               if (data.data.memo == localStorage.getItem("sks_name") && !isEnd) {
                   $("#outBtn").html(`
                      <button type="button" onclick="delAppoint(${appointId})" style="color:white;
                         font-weight:bold;">
@@ -117,7 +126,7 @@ keyupInviteSearch();
                   ${member.name}
                   ${member.name == master ? `<i class="fa fa-star"></i>` : ""}
                </a>
-               ${master == localStorage.getItem("sks_name") && member.name != master ? `
+               ${master == localStorage.getItem("sks_name") && member.name != master && !isEnd ? `
                   <button style="float:left; font-size:1.5rem; color:red;"
                      type="button" onclick="deleteMember(${member.id})">
                      <i class="fa fa-times"></i>
@@ -127,7 +136,7 @@ keyupInviteSearch();
             </div><br>
          `;
          $("#members").append(`${row}\n`);
-         if (member.id == localStorage.getItem("sks_id")) {
+         if (member.id == localStorage.getItem("sks_id") && !isEnd) {
             $("#inviteBtn").html(`
                <button type="button" style="color:white; font-weight:bold;"
                   onclick="controlFriendTab();">
@@ -145,7 +154,7 @@ keyupInviteSearch();
             }
          }
       });
-      if (!isIn && master != localStorage.getItem("sks_name")) {
+      if (!isIn && master != localStorage.getItem("sks_name") && !isEnd) {
          $("#outBtn").html(`
             <button type="button" onclick="inAppoint(${appointId})" style="color:white;
                font-weight:bold;">
@@ -272,6 +281,8 @@ function inviteSend(toId) {
    })
 }
 function getDist(lat1,lng1,lat2,lng2) {
+   if(startDist > new Date()) return "-"
+
    function deg2rad(deg) { return deg * (Math.PI/180)}
 
    var R = 6371; // Radius of the earth in km
@@ -280,7 +291,10 @@ function getDist(lat1,lng1,lat2,lng2) {
    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
    var d = R * c * 1000; // Distance in km
-   
-   if (d >= 1000) return `${Math.round(d/100)/10}km`;
-   return `${Math.round(d)}m`;
+
+   if (new Date() < endDist) {
+      if (d >= 1000) return `${Math.round(d/100)/10}km`;
+      else return `${Math.round(d)}m`;
+   }
+   else return Math.round(d) <= 50 ? "참석" : "불참"
 }
