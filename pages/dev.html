@@ -27,10 +27,11 @@
 $("#submit").click(function() {
    let formData = new FormData($('#frm')[0]);
    $.ajax({
-      url:`${path}/dev/default`,
-      type:"POST",
-      data:formData,
-      cache:false,
+      url : `${path}/dev/default`,
+      type : 'POST',
+      data : formData,
+      contentType : false,
+      processData : false,
       success:function(data) {
          console.log("성공");
       }   
