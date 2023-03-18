@@ -1,4 +1,4 @@
-const path = "http://localhost:5000";
+const path = "http://Sekkison-env-1.eba-qrr3cbmm.ap-northeast-2.elasticbeanstalk.com";
 
 $(function() {
    $(".common").load("../pages/common.html");
