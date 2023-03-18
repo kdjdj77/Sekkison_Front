@@ -31,6 +31,9 @@ $("#submit").click(function() {
       type:"POST",
       data:formData,
       cache:false,
+      success:function(data) {
+         console.log("성공");
+      }   
    });
 })
 </script>
