@@ -27,7 +27,7 @@
 $("#submit").click(function() {
    let formData = new FormData($('#frm')[0]);
    $.ajax({
-      url : `${path}/dev/default`,
+      url : `${path}/userFiles/dev/default`,
       type : 'POST',
       data : formData,
       contentType : false,
