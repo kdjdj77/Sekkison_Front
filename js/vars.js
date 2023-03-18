@@ -1,4 +1,4 @@
-const path = "http://localhost:8088";
+const path = "http://localhost:5000";
 
 $(function() {
    $(".common").load("../pages/common.html");
