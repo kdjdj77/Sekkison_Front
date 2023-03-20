@@ -292,6 +292,9 @@ function getDist(lat1,lng1,lat2,lng2) {
    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
    var d = R * c * 1000; // Distance in km
 
+   console.log(new Date());
+   console.log(startDist);
+   console.log(endDist);
    if (new Date() < endDist) {
       if (d >= 1000) return `${Math.round(d/100)/10}km`;
       else return `${Math.round(d)}m`;
