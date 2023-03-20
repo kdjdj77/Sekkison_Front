@@ -298,5 +298,6 @@ function getDist(lat1,lng1,lat2,lng2) {
       if (d >= 1000) return `${Math.round(d/100)/10}km`;
       else return `${Math.round(d)}m`;
    }
-   else return Math.round(d) <= 50 ? "참석" : "불참"
+   //else return "Math.round(d) <= 50 ? "참석" : "불참""
+   else return "---";
 }
