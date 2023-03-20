@@ -48,8 +48,7 @@ keyupInviteSearch();
                let appointdday = new Date(data.data.dday);
                isEnd = appointdday < new Date() ? true : false;
                endDist = appointdday;
-               appointdday.setMinutes(appointdday.getMinutes() - 30);
-               startDist = appointdday;
+               startDist = new Date(Date.parse(appointdday)-1000*60*30);
 
                loadMembers(data.data.memo, data.data.type, data.data.posX, data.data.posY);
                if (data.data.memo == localStorage.getItem("sks_name") && !isEnd) {
@@ -281,7 +280,7 @@ function inviteSend(toId) {
    })
 }
 function getDist(lat1,lng1,lat2,lng2) {
-   if(startDist > new Date()) return "-"
+   if(new Date() < startDist) return "---"
 
    function deg2rad(deg) { return deg * (Math.PI/180)}
 
