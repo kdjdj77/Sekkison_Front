@@ -2,32 +2,6 @@
     "use strict";
     //[ Focus input ]
 
-    if (localStorage.getItem("sks_username") != null && localStorage.getItem("sks_password") != null) {
-        let data = {
-			"username":localStorage.getItem("sks_username"),
-			"password":localStorage.getItem("sks_password")
-		};
-        $.ajax({
-			url:`${path}/users/login`,
-			type:"POST",
-			data:data,
-			cache:false,
-			success : function(data){
-                if (data.success) {
-                    console.log("로그인 성공");
-                    localStorage.setItem('sks_id', data.data.id);
-                    localStorage.setItem('sks_username', data.data.username);
-                    localStorage.setItem('sks_password', data.data.password);
-                    localStorage.setItem('sks_name', data.data.name);
-                    location.href="./pages/home.html";
-                } else {
-                    console.log(data.msg);
-                    $('#error').text(data.msg);
-                }
-            }
-		});
-    }
-
     $('.input100').each(function(){
         $(this).on('blur', function(){
             if($(this).val().trim() != "") $(this).addClass('has-val');
