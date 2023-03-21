@@ -52,7 +52,7 @@
     });
     //[login]
     $("#submitBtn").click(defaultLogin);
-    $("#googleBtn").click(googleLogin);
+    //$("#googleBtn").click(googleLogin);
     $("#kakaoBtn").click(kakaoLogin);
     $("#PW").on('keyup', function() {
         if(window.event.keyCode==13) defaultLogin();
