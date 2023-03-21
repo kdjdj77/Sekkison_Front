@@ -113,9 +113,7 @@ keyupInviteSearch();
    function setMembers(data, master, type, x, y) {
       let isIn = false;
       data.forEach(member => {
-         let meter = 
-            (member.posX == null || member.posY == null) ?
-            "???" : getDist(x, y, member.posX, member.posY);
+         let meter = getDist(x, y, member.posX, member.posY);
          let row = `
             <div style="width:100%; margin:1rem;">
                <a style="float:left; text-decoration:none; color:black; font-size:1rem;"
@@ -131,7 +129,7 @@ keyupInviteSearch();
                      <i class="fa fa-times"></i>
                   </button>` : ""
                }
-               <div style="float:right;">${type == "FTF" ? `(${meter})` : ""}</div>
+               <div style="float:right; margin-right:0.5rem;">${type == "FTF" ? `${meter}` : ""}</div>
             </div><br>
          `;
          $("#members").append(`${row}\n`);
@@ -280,8 +278,9 @@ function inviteSend(toId) {
    })
 }
 function getDist(lat1,lng1,lat2,lng2) {
-   if(new Date() < startDist) return "---"
+   if(new Date() < startDist || endDate < new Date()) return "---"
 
+   if (lat1 == null || lng1 == null || lat2 == null || lng2 == null) return "???"
    function deg2rad(deg) { return deg * (Math.PI/180)}
 
    var R = 6371; // Radius of the earth in km
@@ -294,10 +293,7 @@ function getDist(lat1,lng1,lat2,lng2) {
    console.log(new Date());
    console.log(startDist);
    console.log(endDist);
-   if (new Date() < endDist) {
-      if (d >= 1000) return `${Math.round(d/100)/10}km`;
-      else return `${Math.round(d)}m`;
-   }
-   //else return "Math.round(d) <= 50 ? "참석" : "불참""
-   else return "---";
+   
+   if (d >= 1000) return `${Math.round(d/100)/10}km`;
+   else return `${Math.round(d)}m`;
 }

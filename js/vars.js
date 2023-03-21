@@ -2,8 +2,6 @@
 // const path = "http://localhost:5000";
 const path = "https://data.sekkison.xyz"
 
-getGeolocation();
-
 $(function() {
    $(".common").load("../pages/common.html");
 })
@@ -25,41 +23,39 @@ function t(unsafeText) {
 }
 
 // 사용자 좌표 받아오기(50m 이동할 때마다)
-function getGeolocation() {
-   if (navigator.geolocation) {
-      let before_record = null;
-      const newId = navigator.geolocation.watchPosition(
-         (position) => {
-            let updateFlag = true;
-            const now = new Date();
-            const new_record = {
-               err: 0,
-               time: now.toLocaleTimeString(),
-               latitude: position.coords.latitude,
-               longitude: position.coords.longitude,
-            };
-            //시작
-            if (before_record !== null) {
-               const dist = getDistance(
-                  before_record.latitude,
-                  before_record.longitude,
-                  new_record.latitude,
-                  new_record.longitude,
-               );
-               //이동거리가 50m미만이면 안바뀜
-               if(dist < 0.05) updateFlag = false;
-            } 
+if (navigator.geolocation) {
+   let before_record = null;
+   const newId = navigator.geolocation.watchPosition(
+      (position) => {
+         let updateFlag = true;
+         const now = new Date();
+         const new_record = {
+            err: 0,
+            time: now.toLocaleTimeString(),
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+         };
+         //시작
+         if (before_record !== null) {
+            const dist = getDistance(
+               before_record.latitude,
+               before_record.longitude,
+               new_record.latitude,
+               new_record.longitude,
+            );
+            //이동거리가 50m미만이면 안바뀜
+            if(dist < 0.05) updateFlag = false;
+         } 
 
-            if(updateFlag) {
-               setcoords(new_record);
-               before_record = new_record;
-            }
-         },
-         (err) => 
-            { console.log(err.message); },
-            { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
-      );
-   }
+         if(updateFlag) {
+            setcoords(new_record);
+            before_record = new_record;
+         }
+      },
+      (err) => 
+         { console.log(err.message); },
+         { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
+   );
 }
 function getDistance(lat1,lng1,lat2,lng2) {
    function deg2rad(deg) { return deg * (Math.PI/180)}
