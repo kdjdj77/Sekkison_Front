@@ -17,7 +17,7 @@
 			<div class="wrap">
 
          <div id="g_id_onload" data-client_id="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com"
-            data-auto_prompt="false">
+            data-auto_prompt="false" data-onsuccess="onSignIn">
          </div>
          <div class="g_id_signin" data-type="standard" data size="large"
             data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
@@ -25,6 +25,7 @@
           
          <script>
             function handleCredentialResponse(response) {
+               console.log(response);
               console.log("Encoded JWT ID token: " + response.credential);
             }
             window.onload = function () {
