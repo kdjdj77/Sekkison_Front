@@ -16,10 +16,7 @@
 		<div class="container">
 			<div class="wrap">
 
-         <div class="g_id_signin">
-            <img id="googleBtn" style="height:50px; width:50px; border:1px solid rgb(192, 192, 192);
-            border-radius: 5px; cursor:pointer;" src="./images/icons/google.png">
-         </div>
+         <div class="g_id_signin" data-type="icon" data size="large" data-theme="outline" data-shape="square"></div>
           
          <script>
             function handleCredentialResponse(response) {
@@ -37,6 +34,10 @@
                 client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
                 callback: handleCredentialResponse
               });
+              google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+              );
               google.accounts.id.prompt(); // also display the One Tap dialog
             }
         </script>
