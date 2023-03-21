@@ -9,6 +9,7 @@
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 
    <script src="https://accounts.google.com/gsi/client" async defer></script>
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
    <meta name="google-signin-client_id" content="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com">
 </head>
 <body>
@@ -17,27 +18,13 @@
 			<div class="wrap">
 
          <div id="g_id_onload" data-client_id="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com"
-            data-auto_prompt="false" data-onsuccess="onSignIn">
-         </div>
-         <div class="g_id_signin" data-type="standard" data size="large"
-            data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+            data-auto_prompt="false" data-callback="handleCredentialResponse">
          </div>
           
          <script>
             function handleCredentialResponse(response) {
-               console.log(response);
-              console.log("Encoded JWT ID token: " + response.credential);
-            }
-            window.onload = function () {
-              google.accounts.id.initialize({
-                client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-              });
-              google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"),
-                { theme: "outline", size: "large" }  // customization attributes
-              );
-              google.accounts.id.prompt(); // also display the One Tap dialog
+              let res = decodeJwtResponse(response.credential);
+              console.log(res);
             }
         </script>
         <div id="buttonDiv"></div> 
@@ -48,12 +35,5 @@
    </div>
 </body>
 <script>
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  alert('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  alert('Name: ' + profile.getName());
-  alert('Image URL: ' + profile.getImageUrl());
-  alert('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
 </script>
 </html>
