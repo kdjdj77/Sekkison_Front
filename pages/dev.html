@@ -9,6 +9,8 @@
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
    <script src="../js/path.js"></script>
 
+   <meta name="google-signin-client_id" content="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com.apps.googleusercontent.com">
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
@@ -18,7 +20,13 @@
             <form id="frm">
                <input name="file" type="file" id="profileInput">
                <button type="button" id="submit">등록</button> 
-            </form>           
+            </form>
+            <div>
+
+               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+            </div>
          </div>
       </div>
    </div>
@@ -37,5 +45,14 @@ $("#submit").click(function() {
       }   
    });
 })
+</script>
+<script>
+   function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 </script>
 </html>
