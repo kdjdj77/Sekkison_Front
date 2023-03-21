@@ -129,7 +129,7 @@ keyupInviteSearch();
                      <i class="fa fa-times"></i>
                   </button>` : ""
                }
-               <div style="float:right; margin-right:0.5rem;">${type == "FTF" ? `${meter}` : ""}</div>
+               <div style="float:right; margin-right:2rem;">${type == "FTF" ? `${meter}` : ""}</div>
             </div><br>
          `;
          $("#members").append(`${row}\n`);
@@ -293,7 +293,7 @@ function getDist(lat1,lng1,lat2,lng2) {
    console.log(new Date());
    console.log(startDist);
    console.log(endDist);
-   
+
    if (d >= 1000) return `${Math.round(d/100)/10}km`;
    else return `${Math.round(d)}m`;
 }
