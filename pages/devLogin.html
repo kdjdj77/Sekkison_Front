@@ -5,6 +5,11 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>dev</title>
+   <script>
+      let currentUrl = window.location.href;
+      if (currentUrl.startsWith("https:"))
+         location.href = currentUrl.replace(/^https:/, "http:");
+   </script>
    <link rel="stylesheet" href="../css/basic.css"/>
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 
