@@ -142,7 +142,7 @@
 	function handleCredentialResponse(response) {
 		const responsePayload = parseJwt(response.credential);
 		let token = responsePayload.sub; 
-		apiLogin(`naver_${token}`, `naver_pw_${token}`, 0);
+		apiLogin(`google_${token}`, `google_pw_${token}`, 0);
 	};
 	function parseJwt (token) {
 		var base64Url = token.split('.')[1];
