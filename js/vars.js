@@ -2,8 +2,6 @@
 // const path = "http://localhost:5000";
 const path = "https://data.sekkison.xyz"
 
-
-
 getGeolocation();
 
 $(function() {
