@@ -7,46 +7,46 @@
    <title>dev</title>
    <link rel="stylesheet" href="../css/basic.css"/>
    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-   <script src="../js/path.js"></script>
 
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
+   <script src="https://accounts.google.com/gsi/client" async defer></script>
    <meta name="google-signin-client_id" content="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com">
-   
 </head>
 <body>
    <div class="common" style="width:100%;"></div>
    <div class="limiter">
 		<div class="container">
 			<div class="wrap">
-            <form id="frm">
-               <input name="file" type="file" id="profileInput">
-               <button type="button" id="submit">등록</button> 
-            </form>
-            <div>
 
-               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+         <div id="g_id_onload" data-client_id="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com"
+            data-login_uri="#" data-auto_prompt="false">
+         </div>
+         <div class="g_id_signin" data-type="standard" data size="large"
+            data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+         </div>
+          
+         <script>
+            function handleCredentialResponse(response) {
+              console.log("Encoded JWT ID token: " + response.credential);
+            }
+            window.onload = function () {
+              google.accounts.id.initialize({
+                client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+              });
+              google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+              );
+              google.accounts.id.prompt(); // also display the One Tap dialog
+            }
+        </script>
+        <div id="buttonDiv"></div> 
 
 
-            </div>
          </div>
       </div>
    </div>
 </body>
-<script>
-$("#submit").click(function() {
-   let formData = new FormData($('#frm')[0]);
-   $.ajax({
-      url : `${path}/userFiles/dev/default`,
-      type : 'POST',
-      data : formData,
-      contentType : false,
-      processData : false,
-      success:function(data) {
-         console.log("성공");
-      }   
-   });
-})
-</script>
 <script>
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
