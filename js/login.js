@@ -86,7 +86,6 @@
             }
 		});
     }
-    // 구글 로그인
     // 카카오 로그인
     function kakaoLogin() {
         Kakao.init('cab7544176ea7c6e5560a224d2808d78');
@@ -125,27 +124,27 @@
             //else console.log("callback 처리에 실패하였습니다.");
         });
     });
-
-    // api 로그인 진행
-    function apiLogin(id, pw, type) {
-        $.ajax({
-			url:`${path}/users/find?username=${id}`,
-			type:"GET",
-			cache:false,
-			success : function(data){
-                if (data.success) {
-                    console.log("로그인 성공");
-                    localStorage.setItem('sks_id', data.data.id);
-                    localStorage.setItem('sks_username', data.data.username);
-                    localStorage.setItem('sks_password', data.data.password);
-                    localStorage.setItem('sks_name', data.data.name);
-                    location.href="./pages/home.html";
-                } else {
-                    localStorage.setItem('sks_username', id);
-                    localStorage.setItem('sks_password', pw);
-                    location.href = `./pages/apiregister.html?api=${type}`;
-                }
-            }
-		});
-    }
 })(jQuery);
+
+// api 로그인 진행
+function apiLogin(id, pw, type) {
+    $.ajax({
+        url:`${path}/users/find?username=${id}`,
+        type:"GET",
+        cache:false,
+        success : function(data){
+            if (data.success) {
+                console.log("로그인 성공");
+                localStorage.setItem('sks_id', data.data.id);
+                localStorage.setItem('sks_username', data.data.username);
+                localStorage.setItem('sks_password', data.data.password);
+                localStorage.setItem('sks_name', data.data.name);
+                location.href="./pages/home.html";
+            } else {
+                localStorage.setItem('sks_username', id);
+                localStorage.setItem('sks_password', pw);
+                location.href = `./pages/apiregister.html?api=${type}`;
+            }
+        }
+    });
+}
