@@ -33,7 +33,9 @@
 		}
 	</script>
 <!--구글 -->
+	<meta name = "google-signin-scope" content = "profile">
 	<meta name ="google-signin-client_id" content="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 <!--카카오 -->
@@ -105,9 +107,11 @@
 						<a class="txt2" href="./pages/register.html"> 회원가입 </a>
 					</div>
 					<div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
-						<img id="GgCustomLogin" style="height:50px; width:50px; border:1px solid rgb(192, 192, 192);
-							border-radius: 5px; cursor:pointer;" src="./images/icons/google.png"
-							data-onsuccess="onSignIn">
+						<div id="GgCustomLogin" data-onsuccess="onSignIn" class="g-signin-2"></div>
+						<div>
+							<img id="googleBtn" style="height:50px; width:50px; border:1px solid rgb(192, 192, 192);
+								border-radius: 5px; cursor:pointer;" src="./images/icons/google.png">
+						</div>
 						<img id="kakaoBtn" style="height:50px; width:50px; cursor:pointer;"
 							src="./images/icons/kakaotalk.png">
 						<a id="naverIdLogin_loginButton">
@@ -136,7 +140,6 @@
 <!--===============================================================================================-->
 </body>
 <script src="./js/login.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
 function init() {
 	console.log("init 함수 실행");
