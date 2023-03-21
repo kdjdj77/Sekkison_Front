@@ -278,7 +278,7 @@ function inviteSend(toId) {
    })
 }
 function getDist(lat1,lng1,lat2,lng2) {
-   if(new Date() < startDist || endDate < new Date()) return "---"
+   if(new Date() < startDist || endDist < new Date()) return "---"
 
    if (lat1 == null || lng1 == null || lat2 == null || lng2 == null) return "???"
    function deg2rad(deg) { return deg * (Math.PI/180)}
