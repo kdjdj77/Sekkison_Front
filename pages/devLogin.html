@@ -16,10 +16,11 @@
 		<div class="container">
 			<div class="wrap">
 
-         <div class="g_id_signin" data-type="icon" data size="large" data-theme="outline" data-shape="square"></div>
+         <div class="g_id_signin" data-type="icon" data size="large"
+            data-callback="res" data-theme="outline" data-shape="square"></div>
           
          <script>
-            function handleCredentialResponse(response) {
+            function res(response) {
                console.log(response);
                const responsePayload = decodeJwtResponse(response.credential);
                console.log("ID: " + responsePayload.sub);
@@ -28,17 +29,6 @@
                console.log('Family Name: ' + responsePayload.family_name);
                console.log("Image URL: " + responsePayload.picture);
                console.log("Email: " + responsePayload.email);
-            }
-            window.onload = function () {
-              google.accounts.id.initialize({
-                client_id: "646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-              });
-              google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"),
-                { theme: "outline", size: "large" }  // customization attributes
-              );
-              google.accounts.id.prompt(); // also display the One Tap dialog
             }
         </script>
       </div>
