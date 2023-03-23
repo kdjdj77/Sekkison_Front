@@ -110,10 +110,6 @@
 						<div id="googleBtn" class="g_id_signin" data-type="icon" data-shape="square"
 							data-theme="outline">
 						</div>
-						<script>
-							$("#googleBtn").css({'background-image': 'url(./images/icons/google.png)'});
-							$("#googleBtn div").css({'visibility': 'none'});
-						</script>
 						<img id="kakaoBtn" style="height:40px; width:40px; cursor:pointer;"
 							src="./images/icons/kakaotalk.png">
 						<a id="naverIdLogin_loginButton" style="cursor:pointer">
@@ -157,5 +153,9 @@
 		}).join(''));
 		return JSON.parse(jsonPayload);
 	};
+</script>
+<script>
+	$("#googleBtn").css({'background-image': 'url(./images/icons/google.png)'});
+	$("#googleBtn div").css({'opacity': '0'});
 </script>
 </html>
