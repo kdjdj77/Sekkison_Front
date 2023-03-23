@@ -35,7 +35,10 @@
                               document.getElementById('headerProfileImg').src = e.target.result;
                            };
                            reader.readAsDataURL(input.files[0]);
-                        } else document.getElementById('profileImg').src = "../images/logos/logo.png";
+                        } else {
+                           document.getElementById('profileImg').src = "../images/logos/default.jpg";
+                           document.getElementById('headerProfileImg').src = "../images/logos/default.jpg";
+                        }
                      }
                   </script>
                </div>
