@@ -106,12 +106,15 @@
 						data-client_id="646957294495-4nitspjp5vn5u7aapj5ph6qhvt9fdm0m.apps.googleusercontent.com"
 						data-callback="handleCredentialResponse" data-auto_prompt="false">
 					</div>
+					<div id="g_id_btn" class="g_id_signin" data-type="icon" data-shape="square"
+							data-theme="outline" style="visibility:none;">
+					</div>
 					<div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
-						<div class="g_id_signin" data-type="icon" data-shape="square"
-							data-theme="outline">
-							<img style="height:40px; width:40px; cursor:pointer;"
-							src="./images/icons/google.png">
-						</div>
+						<img style="height:40px; width:40px; cursor:pointer;"
+							src="./images/icons/google.png" onclick="gglogin()">
+						<script>
+							document.getElementById("g_id_btn").click();
+						</script>
 						<img id="kakaoBtn" style="height:40px; width:40px; cursor:pointer;"
 							src="./images/icons/kakaotalk.png">
 						<a id="naverIdLogin_loginButton" style="cursor:pointer">
