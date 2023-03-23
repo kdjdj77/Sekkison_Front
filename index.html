@@ -107,12 +107,15 @@
 						data-callback="handleCredentialResponse" data-auto_prompt="false">
 					</div>
 					<div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
-						<div id="googleBtn" class="g_id_signin" data-type="icon" data-shape="square"
+						<div class="g_id_signin" data-type="icon" data-shape="square"
 							data-theme="outline" style="display:none"></div>
-						<label for="googleBtn">
-							<img style="height:40px; width:40px; cursor:pointer; border-radius:5px; border:1px solid rgb(200, 200, 200);" 
-								src="./images/icons/google.png">
-						</label>
+						<img id="googleBtn" style="height:40px; width:40px; cursor:pointer;"
+						src="./images/icons/google.png">
+						<script>
+							$("#googleBtn").click(function() {
+								$(".g_id_signin").trigger("click");
+							})
+						</script>
 						<img id="kakaoBtn" style="height:40px; width:40px; cursor:pointer;"
 							src="./images/icons/kakaotalk.png">
 						<a id="naverIdLogin_loginButton" style="cursor:pointer">
