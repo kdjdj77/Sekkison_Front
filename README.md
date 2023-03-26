@@ -25,15 +25,14 @@ Intellij Ultimate에서 SpringBoot를 통해 API를 구현하였고 이를 실�
 **쪽지(쪽지 보내기, 쪽지 목록, 답장, 정렬)** | :heavy_check_mark: |
 **유저 검색**  | :heavy_check_mark: |
 **친구 추가, 초대, 리스트** | :heavy_check_mark: | 
+**약속 만들기(대면/비대면 약속, 나만의 약속), 수정, 삭제, 리스트,** | :heavy_check_mark: |  
 **약속 검색**  | :heavy_check_mark: |
 **약속방**  | :heavy_check_mark: |
 **카카오맵 생성(KaKao Developer)** | :heavy_check_mark: |  
 **마커 생성(KaKao Developer)** | :heavy_check_mark: | 
 **좌표를 통해 위치 검색 구현(KaKao Developer)** | :heavy_check_mark: | 
 **유저 실시간 위치 표시** | :heavy_check_mark: |  
-**약속 만들기(대면/비대면 약속, 나만의 약속), 수정, 삭제, 리스트,** | :heavy_check_mark: |  
-**마이페이지 구현** | :heavy_check_mark: | 
-**Header, Footer(홈, 알림, 쪽지, 친구목록, 마이페이지)** | :heavy_check_mark: | 
+
 
 ## ScreenShot
 <p><img src="https://user-images.githubusercontent.com/112387307/227705457-6bdf6ff9-e831-419e-a6b6-d7319410f209.png" width="47%">
